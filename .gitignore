@@ -1,0 +1,35 @@
+# Old repository (kept locally for reference)
+Indice-de-Condiciones-Fin/
+
+# R artifacts
+.Rhistory
+.Rproj.user/
+Rplots.pdf
+R/Rplots.pdf
+*.Rdata
+*.RData
+*.rds
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Submission, reports, and PDF folders (private / not for public repo)
+output/submission/
+output/reports/
+output/pdf/
+
+# Generated HTML (large, can be rebuilt from .md/.tex)
+output/reports/*.html
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.abs
+
+# Peer review / feedback (private)
+COLLEAGUE*.docx
+feedback-*.md

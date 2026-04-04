@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 400">
+  <!-- Background -->
+  <rect width="750" height="400" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="375" y="25" text-anchor="middle" font-family="Times New Roman, serif" font-size="14" font-weight="bold" fill="#2c3e50">Figure 3.2: Dual-Engine Structure — Sectoral Weights and Simulated FCI Effects</text>
+  
+  <!-- Panel A: Sectoral Weights -->
+  <rect x="30" y="45" width="330" height="320" rx="5" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+  <text x="195" y="68" text-anchor="middle" font-family="Times New Roman, serif" font-size="12" font-weight="bold" fill="#2c3e50">Panel A: GDP Composition (ω_j)</text>
+  
+  <!-- Y-axis for Panel A -->
+  <line x1="80" y1="90" x2="80" y2="330" stroke="#2c3e50" stroke-width="1"/>
+  <text x="45" y="210" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="#2c3e50" transform="rotate(-90, 45, 210)">Share of GDP (%)</text>
+  
+  <!-- Y-axis labels Panel A -->
+  <text x="75" y="95" text-anchor="end" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">70</text>
+  <line x1="77" y1="90" x2="80" y2="90" stroke="#2c3e50" stroke-width="1"/>
+  <text x="75" y="139" text-anchor="end" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">60</text>
+  <line x1="77" y1="134" x2="80" y2="134" stroke="#2c3e50" stroke-width="1"/>
+  <text x="75" y="183" text-anchor="end" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">50</text>
+  <line x1="77" y1="178" x2="80" y2="178" stroke="#2c3e50" stroke-width="1"/>
+  <text x="75" y="227" text-anchor="end" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">40</text>
+  <line x1="77" y1="222" x2="80" y2="222" stroke="#2c3e50" stroke-width="1"/>
+  <text x="75" y="271" text-anchor="end" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">30</text>
+  <line x1="77" y1="266" x2="80" y2="266" stroke="#2c3e50" stroke-width="1"/>
+  <text x="75" y="315" text-anchor="end" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">20</text>
+  <line x1="77" y1="310" x2="80" y2="310" stroke="#2c3e50" stroke-width="1"/>
+  
+  <!-- X-axis for Panel A -->
+  <line x1="80" y1="330" x2="340" y2="330" stroke="#2c3e50" stroke-width="1"/>
+  
+  <!-- Bars Panel A -->
+  <!-- Agriculture: 20% -->
+  <rect x="100" y="242" width="60" height="88" fill="#27ae60" stroke="#1e8449" stroke-width="1"/>
+  <text x="130" y="235" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="#27ae60">20%</text>
+  <text x="130" y="350" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">Agriculture</text>
+  <text x="130" y="362" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="#7f8c8d">(Y^A)</text>
+  
+  <!-- Finance-Dependent: 65% -->
+  <rect x="180" y="44" width="60" height="286" fill="#9b59b6" stroke="#8e44ad" stroke-width="1"/>
+  <text x="210" y="80" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="white">65%</text>
+  <text x="210" y="350" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">Finance-</text>
+  <text x="210" y="362" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="#7f8c8d">Dependent (Y^F)</text>
+  
+  <!-- Government/Utilities: 15% -->
+  <rect x="260" y="264" width="60" height="66" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1"/>
+  <text x="290" y="257" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="#95a5a6">15%</text>
+  <text x="290" y="350" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">Gov't &amp;</text>
+  <text x="290" y="362" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="#7f8c8d">Utilities</text>
+  
+  <!-- Panel B: FCI Effects -->
+  <rect x="390" y="45" width="330" height="320" rx="5" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+  <text x="555" y="68" text-anchor="middle" font-family="Times New Roman, serif" font-size="12" font-weight="bold" fill="#2c3e50">Panel B: FCI Effect by Sector (∂Y^j/∂FCI)</text>
+  
+  <!-- Y-axis for Panel B -->
+  <line x1="440" y1="90" x2="440" y2="330" stroke="#2c3e50" stroke-width="1"/>
+  <text x="405" y="210" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="#2c3e50" transform="rotate(-90, 405, 210)">Effect (pp)</text>
+  
+  <!-- Zero line Panel B -->
+  <line x1="440" y1="210" x2="700" y2="210" stroke="#2c3e50" stroke-width="1" stroke-dasharray="3,3"/>
+  
+  <!-- Y-axis labels Panel B -->
+  <text x="435" y="95" text-anchor="end" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">+5</text>
+  <line x1="437" y1="90" x2="440" y2="90" stroke="#2c3e50" stroke-width="1"/>
+  <text x="435" y="215" text-anchor="end" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">0</text>
+  <text x="435" y="275" text-anchor="end" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">-5</text>
+  <line x1="437" y1="270" x2="440" y2="270" stroke="#2c3e50" stroke-width="1"/>
+  <text x="435" y="335" text-anchor="end" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">-10</text>
+  <line x1="437" y1="330" x2="440" y2="330" stroke="#2c3e50" stroke-width="1"/>
+  
+  <!-- X-axis for Panel B -->
+  <line x1="440" y1="330" x2="700" y2="330" stroke="#2c3e50" stroke-width="1"/>
+  
+  <!-- Bars Panel B -->
+  <!-- Agriculture: ~0 (n.s.) -->
+  <rect x="460" y="200" width="60" height="20" fill="#27ae60" stroke="#1e8449" stroke-width="1" opacity="0.5"/>
+  <text x="490" y="195" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="#27ae60">≈ 0</text>
+  <text x="490" y="185" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="#7f8c8d">(n.s.)</text>
+  <text x="490" y="350" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">Agriculture</text>
+  
+  <!-- Finance-Dependent: -5 pp (weighted average) -->
+  <rect x="540" y="210" width="60" height="60" fill="#9b59b6" stroke="#8e44ad" stroke-width="1"/>
+  <text x="570" y="285" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" font-weight="bold" fill="#8e44ad">-5 pp</text>
+  <text x="570" y="350" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">Finance-Dep.</text>
+  
+  <!-- Government: ~0 -->
+  <rect x="620" y="205" width="60" height="10" fill="#95a5a6" stroke="#7f8c8d" stroke-width="1" opacity="0.5"/>
+  <text x="650" y="200" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="#95a5a6">≈ 0</text>
+  <text x="650" y="350" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">Gov't</text>
+  
+  <!-- Calculation box -->
+  <rect x="450" y="85" width="240" height="85" rx="4" fill="#fff9e6" stroke="#f39c12" stroke-width="1.5"/>
+  <text x="570" y="103" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="#8B7000">Aggregation Calculation:</text>
+  <text x="570" y="120" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">∂Y/∂FCI = Σ ω_j · (∂Y^j/∂FCI)</text>
+  <line x1="465" y1="128" x2="675" y2="128" stroke="#f39c12" stroke-width="0.5"/>
+  <text x="570" y="143" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="#2c3e50">= 0.20×(0) + 0.65×(−5) + 0.15×(0)</text>
+  <text x="570" y="158" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" font-weight="bold" fill="#2c3e50">= −3.25 pp (predicted)</text>
+  <text x="570" y="172" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="#27ae60">≈ −3.1 pp (observed) ✓</text>
+  
+  <!-- Source note -->
+  <text x="375" y="390" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" font-style="italic" fill="#7f8c8d">Note: Panel A shows GDP shares from BCP national accounts. Panel B shows average sectoral response to 1 SD FCI tightening at h=6 (illustrative). "n.s." = not significant.</text>
+</svg>

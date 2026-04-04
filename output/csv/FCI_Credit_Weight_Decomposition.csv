@@ -1,0 +1,5 @@
+"Method","Weight_Pct","Description"
+"Z-Score",8.3,"Equal weight: 1/12 = 8.3%"
+"PCA",14.6,"PC1 loading=0.640, sq. loading share=14.6%"
+"VAR",8.3,"Approx. equal weight: FCI = mean(fitted), ~1/12"
+"DFM",13.3,"Z-loading=0.237, sq. loading share=13.3%"

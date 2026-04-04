@@ -1,0 +1,7 @@
+"Finding","Result","p_value"
+"Aggregate commodity → FCI","coef=+0.0000",0.916274934068748
+"Paraguay ToT → FCI","coef=+0.0037",0.460708097048731
+"Disaggregated joint F-test","R²=0.2623",9.75292270651593e-16
+"Export index sign","coef=-0.0112",0.0412245644412653
+"Oil_Brent sign","coef=-0.0023",0.391570126661427
+"Interaction FCI×ToT at h=12","coef=-0.2178",0.00388269848308891

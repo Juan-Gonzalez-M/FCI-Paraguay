@@ -1,0 +1,8 @@
+"variable","loading_pre","loading_post","expected_sign","issue_category","rationale"
+"Spread_activas_pasivas",0.388364808134468,-0.279972791355837,1,"SIGN FLIP: Post-IT deviates","Higher spread = tighter"
+"Commodities",0.36799912135953,-0.292485441679897,-1,"SIGN FLIP: Pre-IT deviates","Higher prices = looser (soy/beef exporter)"
+"TCN",-0.16295633181976,0.409001861698786,1,"SIGN FLIP: Pre-IT deviates","Depreciation = tighter (net importer)"
+"Crecimiento_creditos",0.222033412850828,0.122154491389247,-1,"Both periods: unexpected sign","Higher growth = looser"
+"Liquidez",0.344133775439994,0.397989277365658,-1,"Both periods: unexpected sign","Higher liquidity = looser"
+"Spread_mercado_TPM",-0.280119238648403,-0.304383047962887,1,"Both periods: unexpected sign","Higher market spread = tighter"
+"Rentabilidad",0.240446909574269,0.25449271985815,-1,"Both periods: unexpected sign","Higher profitability = looser"

@@ -1,0 +1,3 @@
+"output_var","output_label","p_credit_to_output","p_output_to_credit","credit_causes_output","output_causes_credit"
+"IMAEP","Aggregate GDP (IMAE-P)",0.492629603507097,0.00248899941774972,"NO","YES"
+"IMAEP_SANB","Non-Agro GDP (IMAE-P ex Agro/Binational)",0.041236093478894,0.00867381334543427,"YES","YES"

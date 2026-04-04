@@ -1,0 +1,5 @@
+"sample","n_obs","DXY_coef","DXY_t","partial_R2_pct","F_stat"
+"Full (expanding window)",336,0.028193836734816,14.0422055827079,45.9690102015009,197.183537627033
+"Post-IT (expanding window)",176,0.0211255771257803,13.1688797909134,52.3301467780653,173.419394947527
+"Full (rolling 60m, baseline)",337,0.04,5.74,22.8,32.92
+"Post-IT (rolling 60m, baseline)",176,-0.003,-0.38,0.19,0.14

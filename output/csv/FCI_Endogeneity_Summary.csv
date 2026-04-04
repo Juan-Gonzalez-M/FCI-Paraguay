@@ -1,0 +1,5 @@
+"FCI_Version","N_Variables","Excluded","Corr_with_Baseline","LP_Coef_h12","LP_Pvalue_h12"
+"FCI_COMP (Full)",12,"None",1,-5.99,0.011
+"FCI_exCredit",11,"Crecimiento_creditos",0.975,-7.66,0.006
+"FCI_exNPL",11,"Morosidad",0.939,NA,NA
+"FCI_ENDO",9,"External vars",0.96,NA,NA

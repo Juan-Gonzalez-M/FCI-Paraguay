@@ -1,0 +1,7 @@
+"sample","comparison","correlation","n_obs"
+"Full Sample","ENDO vs ENDO_noTCN",0.979812480906798,360
+"Full Sample","EXO vs EXO_withTCN",0.804728615340146,360
+"Full Sample","ENDO_exCredit vs noTCN_exCredit",0.976363960445795,360
+"Post-IT","ENDO vs ENDO_noTCN",0.765821502699663,176
+"Post-IT","EXO vs EXO_withTCN",0.881764567382241,176
+"Post-IT","ENDO_exCredit vs noTCN_exCredit",0.742393406490253,176

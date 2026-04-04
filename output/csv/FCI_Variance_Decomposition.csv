@@ -1,0 +1,4 @@
+"Method","Domestic_Pct","External_Pct","Description"
+"PCA Loadings",94.7891991025655,5.21080089743453,"Sum of squared PC1 loadings by group"
+"R-squared Decomposition",91.8787612114436,8.12123878855639,"Marginal R-squared contribution"
+"VAR FEVD (h=12)",NA,NA,"FCI explains avg 4.1% of macro variance"
