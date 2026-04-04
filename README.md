@@ -1,29 +1,35 @@
 # Financial Conditions and Credit Transmission in a Dual-Engine Economy: Evidence from Paraguay
 
-**Author:** Juan Manuel Gonzalez Masulli
-**Affiliation:** Banco Central del Paraguay; Universidad Catolica Nuestra Senora de la Asuncion
-**Submitted to:** Emerging Markets Review
+**Author:** Juan Manuel Gonzalez Masulli  
+**Affiliation:** Banco Central del Paraguay; Universidad Catolica Nuestra Senora de la Asuncion  
+**Contact:** jgonzalezm@bcp.gov.py
 
-## Abstract
+## Overview
 
-In dollarized commodity-exporting economies, the dollar index (DXY) --- not the VIX --- drives domestic financial conditions, operating through balance sheet channels that risk-appetite frameworks overlook. We construct and validate the first Financial Conditions Index (FCI) for Paraguay (January 1995--August 2025), a partially dollarized commodity exporter. Three findings emerge. First, the DXY explains 23.6% of FCI variation versus near-zero for the VIX; identification-robust Anderson-Rubin inference confirms a negative credit channel peaking at 6--12 months. Second, transmission is state-dependent on the commodity cycle: pro-cyclical leverage during booms amplifies the marginal FCI effect on credit growth from -3.7 pp to -10.8 pp. Third, finance-dependent sectors contract sharply while agriculture remains orthogonal, a dual-engine structure reconciling strong credit effects with weak aggregate output responses.
+This repository contains the data, code, and generated outputs for the construction and analysis of the first Financial Conditions Index (FCI) for Paraguay. The FCI combines 12 financial variables using four methodologies (Z-Score, PCA, VAR, Dynamic Factor Model) to produce a composite monthly index spanning January 1996 to December 2025 (360 observations).
+
+The analysis provides evidence that:
+
+1. **Dollar Channel Dominance:** The US Dollar Index (DXY), not US interest rates or global risk proxies (VIX), is the primary external driver of Paraguay's domestic financial conditions, operating through the balance sheet channel in a partially dollarized economy (~40% of bank credit in USD).
+2. **Credit Transmission:** A one standard deviation FCI tightening is associated with a 5.6 pp decline in real credit growth at 12 months (post-IT sample), confirmed by convergent evidence from four identification strategies (OLS-LP, IV-LP with Anderson-Rubin inference, Proxy-SVAR, Block-SVAR).
+3. **Commodity Amplification:** Transmission is state-dependent on the commodity cycle: pro-cyclical leverage during commodity booms amplifies the credit effect of financial tightening.
+4. **Dual-Engine Structure:** Finance-dependent sectors (investment, construction, services) contract sharply under tightening, while agricultural output shows no persistent response --- helping reconcile strong credit effects with weak aggregate output responses commonly observed in commodity exporters.
 
 ## Data
 
-All input data is in `data/`:
+All input data are contained in a single Excel file:
 
-| File | Description |
-|------|-------------|
-| `FCI_data_1.xlsx` | Main database: 12 financial variables, monthly, Jan 1995--Aug 2025 (368 obs) |
-| `Variables_exo.xlsx` | External variables: Global Financial Conditions + Main Commodity Prices |
-| `Output_puzzle.xlsx` | Sectoral output data for dual-engine analysis |
-| `legacy/Data_FCI_Paraguay.xlsx` | Archived Nov 2020 version (not used in current analysis) |
+| File | Content | Observations |
+|------|---------|--------------|
+| `data/FCI_data_1.xlsx` | 6 sheets: FCI input variables, macro controls, global financial conditions, commodity prices, quarterly national accounts, monthly sectoral activity | 360 monthly (Jan 1996--Dec 2025); 127 quarterly (1994Q1--2025Q3) |
+
+**Sheets:** Main_variables (12 FCI inputs + credit/deposit stocks), Datos_macro (IMAEP, CPI, credit), Global_Financial_Conditions (US 10Y, S&P 500, DXY, Selic, ToT), Main_Commodities_Prices (9 commodities), Quarterly_SA (GDP and expenditure components), Monthly_SA (sectoral activity indices).
 
 ## Replication
 
 ### Requirements
 
-- **R version:** 4.5.1 (tested; earlier 4.x versions likely compatible)
+- **R version:** 4.3+ (tested on 4.5.1)
 - **Required packages:** readxl, dplyr, tidyr, zoo, FactoMineR, vars, MARSS, ggplot2, gridExtra, lmtest, sandwich, tseries, urca, quantreg, ivreg
 
 Missing packages are installed automatically by the pipeline.
@@ -35,92 +41,102 @@ cd R/
 Rscript RUN_ALL.R
 ```
 
-Runtime: approximately 8--10 minutes. Produces ~171 PNG charts and ~127 CSV files in `output/png/` and `output/csv/`.
+Runtime: approximately 8--10 minutes. Produces ~144 PNG charts and ~127 CSV data files in `output/png/` and `output/csv/`.
 
 ### Running Individual Scripts
 
 ```bash
 cd R/
-Rscript 01_FCI_Complete.R     # FCI construction only (~1 min)
-Rscript 05_FCI_Local_Projections.R  # Local projections only
+Rscript 01_FCI_Complete.R          # FCI construction only (~1 min)
+Rscript 05_FCI_Local_Projections.R # Local projections only
 ```
 
-Scripts must be run from the `R/` directory. Script 01 must run first; subsequent scripts depend on its outputs.
+Script `01_FCI_Complete.R` must run first; all subsequent scripts depend on its outputs. Scripts must be executed from the `R/` directory.
 
 ## Project Structure
 
 ```
 FCI-Paraguay/
-├── README.md               # This file (replication guide)
-├── R/                      # Analysis scripts
-│   ├── CLAUDE.md           # Development reference (not needed for replication)
-│   ├── RUN_ALL.R           # Master pipeline script
-│   ├── 01_FCI_Complete.R   # FCI construction (must run first)
-│   ├── 02-23_*.R           # Analysis scripts (21 total)
-│   └── ...
-├── data/                   # Input data
-│   ├── FCI_data_1.xlsx
-│   ├── Variables_exo.xlsx
-│   └── Output_puzzle.xlsx
-├── output/                 # Generated outputs
-│   ├── png/                # Charts (~171 files)
-│   ├── csv/                # Data tables (~127 files)
-│   ├── pdf/                # Compiled paper
-│   └── reports/            # Paper source (LaTeX + supporting reports)
-└── docs/                   # Template files and diagrams
+├── README.md
+├── R/                          # Analysis scripts (28 files)
+│   ├── RUN_ALL.R               # Master pipeline script
+│   ├── 01_FCI_Complete.R       # FCI construction (must run first)
+│   ├── 02--23_*.R              # Core analysis scripts (see table below)
+│   ├── 24--28_*.R              # Verification and revision computations
+│   └── CLAUDE.md               # Development reference (not needed for replication)
+├── data/
+│   └── FCI_data_1.xlsx         # Single input file (6 sheets)
+├── output/                     # Generated outputs
+│   ├── csv/                    # Data tables (~127 files)
+│   └── png/                    # Charts (~144 files)
+└── docs/
+    └── emr-template/           # Elsevier CAS LaTeX template files
 ```
 
-## R Scripts
+> **Note:** The manuscript source (LaTeX), compiled PDFs, and submission materials are maintained separately and are not included in this repository. The compiled paper and online appendix are available upon request from the corresponding author.
+
+## Analysis Scripts
 
 | Script | Purpose |
 |--------|---------|
 | `01_FCI_Complete.R` | FCI construction at all levels (comprehensive, endo/exo, channels, purified) |
-| `02_FCI_Effects_Analysis.R` | Granger causality, IRF, out-of-sample forecasting |
+| `02_FCI_Effects_Analysis.R` | Granger causality, impulse responses, out-of-sample forecasting |
 | `03_FCI_Stationarity_Tests.R` | ADF, PP, KPSS unit root tests |
 | `05_FCI_Local_Projections.R` | Local Projections for credit channel and macro effects |
 | `06_FCI_Rolling_Stability.R` | Rolling/expanding window PCA loading stability |
-| `07_FCI_Robustness_Endogeneity.R` | Endogeneity tests (FCI_exNPL, FCI_exCredit) |
+| `07_FCI_Robustness_Endogeneity.R` | Endogeneity robustness (FCI_exNPL, FCI_exCredit) |
 | `08_FCI_Regime_TVP_Analysis.R` | Regime-switching (IT/COVID), time-varying parameters |
 | `09_FCI_Monetary_Policy_Interaction.R` | FCI x TPM interaction, systematic forecasting |
-| `10_FCI_Growth_at_Risk.R` | Growth-at-Risk quantile regressions |
+| `10_FCI_Growth_at_Risk.R` | Growth-at-Risk quantile regressions (Adrian et al. 2019) |
 | `11_FCI_Block_SVAR.R` | Block-exogenous SVAR for external spillovers |
 | `12_FCI_Output_Puzzle_Investigation.R` | Output puzzle: IMAEP_SANB LP, VECM, transmission channels |
 | `14_FCI_Output_Puzzle_Sectoral.R` | Sectoral credit/output decomposition |
-| `15_FCI_PostIT_Subsample_Analysis.R` | Post-IT subsample re-estimation |
-| `16_FCI_TCN_Reclassification.R` | TCN reclassification sensitivity |
-| `17_FCI_New_External_Data.R` | GFC index, regional proxy, disaggregated commodities |
-| `18_FCI_Improved_IV_LP.R` | Expanded IV-LP with Anderson-Rubin inference |
-| `19_FCI_Proxy_SVAR.R` | Proxy-SVAR (Mertens & Ravn 2013) |
+| `15_FCI_PostIT_Subsample_Analysis.R` | Post-IT subsample re-estimation (May 2011+) |
+| `16_FCI_TCN_Reclassification.R` | Exchange rate reclassification sensitivity |
+| `17_FCI_New_External_Data.R` | GFC index construction, regional proxy, disaggregated commodities |
+| `18_FCI_Improved_IV_LP.R` | Expanded IV-LP with Anderson-Rubin weak-IV-robust inference |
+| `19_FCI_Proxy_SVAR.R` | Proxy-SVAR identification (Mertens & Ravn 2013) |
 | `20_FCI_Enriched_Block_SVAR.R` | 7-variable external block SVAR, historical decomposition |
-| `21_FCI_Commodity_Puzzle.R` | Disaggregated commodity effects, ToT interaction |
+| `21_FCI_Commodity_Puzzle.R` | Disaggregated commodity effects, ToT interaction LP |
 | `22_FCI_Regional_Spillovers.R` | Brazil Selic spillover analysis |
-| `23_FCI_Identification_Triangulation.R` | DXY IV-LP, GFC-PCA IV, globally-purged FCI |
+| `23_FCI_Identification_Triangulation.R` | DXY-only IV-LP, GFC-PCA IV, globally-purged FCI, cross-method comparison |
+| `27_FCI_Published_Quarterly_LP.R` | Quarterly sectoral LP using published national accounts |
+| `28_FCI_Published_Monthly_LP.R` | Monthly sectoral LP using published activity indices |
 
-## Paper-to-Output Mapping
+## FCI Construction
 
-Key tables and figures in the paper and their generating scripts/output files:
+The FCI combines 12 sign-adjusted variables (positive = tighter conditions) using four methods, then averages the normalized outputs:
 
-| Paper Element | Output File(s) | Script |
-|---|---|---|
-| **Table 1** (Variables) | `csv/FCI_Summary_Statistics.csv` | `01` |
-| **Table 2** Panel A (Post-IT LP) | `csv/PostIT_LP_Credit.csv` | `15` |
-| **Table 2** Panel B (Specifications) | `csv/PostIT_LP_Credit.csv`, `csv/LP_Credit_Standard.csv`, `csv/Triangulation_Globally_Purged_LP.csv` | `05`, `15`, `23` |
-| **Table 2** Panel C (Currency) | `csv/LP_Credit_Standard.csv`, `csv/PostIT_LP_Credit.csv` | `05`, `15` |
-| **Table 3** (First-stage) | `csv/IV_First_Stage_Battery.csv` | `18` |
-| **Table 4** (Anderson-Rubin) | `csv/Triangulation_DXY_IV_LP.csv` | `23` |
-| **Table 5** (FCI x ToT) | `csv/Commodity_Credit_Interaction_LP.csv` | `21` |
-| **Table 6** (Sectoral output) | `csv/LP_Sectoral_Output_Full.csv` | `14` |
-| **Table 7** (Robustness) | Multiple CSVs (see notes below) | Multiple |
-| **Figure 2** (FCI time series) | `png/01_FCI_Methods_Comparison.png` | `01` |
-| **Figure 3** (Triangulation) | `png/251_Identification_Triangulation.png` | `23` |
-| **Figure 4** (Marginal effects) | `png/234_Marginal_Effects_FCI_Credit.png` | `21` |
-| **Figure 5** (Sectoral output) | `png/143_LP_Sectoral_Output_Full.png` | `14` |
+| Variable | Channel | Sign |
+|----------|---------|------|
+| TPM (policy rate) | Rates | + |
+| Lending-deposit spread | Rates | + |
+| Market-policy spread | Rates | + |
+| Credit growth (YoY) | Banking | - |
+| Credit-to-deposit ratio | Banking | - |
+| NPL ratio | Banking | + |
+| ROE | Banking | - |
+| Liquidity ratio | Banking | - |
+| Nominal exchange rate (PYG/USD) | External/Domestic | + |
+| Commodities (soybean + beef avg) | External | - |
+| US Fed Funds rate | External | + |
+| VIX | External | + |
 
-**Table 7 sources:** `csv/LP_Credit_Standard.csv` (baseline), `csv/PostIT_LP_Credit.csv` (post-IT), `csv/LP_Method_by_Method.csv` (rates-only, ENDO variants), `csv/TCN_Reclass_LP_Comparison.csv` (TCN reclassified), `csv/Triangulation_Globally_Purged_LP.csv` (purged), `csv/LP_Placebo_Test.csv` (placebo), `csv/VAR_Ordering_Robustness.csv` (VAR ordering).
+All variables are standardized using a rolling 60-month window.
 
-## Notes
+## Key Dates
 
-- The paper source is `output/reports/FCI_Paraguay_EMR_Submission.tex`. Compile with `pdflatex` + `bibtex` using the Elsevier CAS single-column template (included in `docs/emr-template/`).
-- `R/CLAUDE.md` is a development reference for AI-assisted coding and is not needed for replication.
-- Positive FCI values indicate tighter financial conditions throughout.
-- The FCI_CORE index (12 variables, full sample) is the primary index; FCI_FULL (13 variables, includes EMBI from 2013+) is used for robustness.
+| Event | Date |
+|-------|------|
+| Inflation Targeting adoption | May 2011 |
+| COVID-19 period | March 2020 -- December 2021 |
+
+## Citation
+
+If you use this code or data, please cite:
+
+> Gonzalez Masulli, J.M. (2026). Financial Conditions and Credit Transmission in a Dual-Engine Economy: Evidence from Paraguay. Working Paper.
+
+## License
+
+The views expressed are those of the author and do not represent the official position of the Banco Central del Paraguay.
