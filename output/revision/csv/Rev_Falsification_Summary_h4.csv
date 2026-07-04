@@ -1,0 +1,11 @@
+outcome,shock,role,coef,p
+Electricidad,FCI,placebo,2.485,0.228
+Electricidad,shk_dxy,placebo,2.509,0.11
+Consumo_Publico,FCI,placebo,-4.79,0.038
+Consumo_Publico,shk_dxy,placebo,1.334,0.246
+Agricultura,FCI,placebo,8.243,0.053
+Agricultura,shk_dxy,placebo,4.032,0.121
+PIB,FCI,contrast,1.479,0.157
+PIB,shk_dxy,contrast,-1.303,0.071
+Cred,FCI,contrast,-9.921,0.002
+Cred,shk_dxy,contrast,0.055,0.949

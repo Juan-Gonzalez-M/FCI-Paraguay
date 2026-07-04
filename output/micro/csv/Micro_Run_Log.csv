@@ -1,0 +1,7 @@
+"script","status","minutes"
+"30_Bank_Micro_Data_Construction.R","OK",0.03
+"31_Bank_Micro_DesignA_Currency.R","OK",3.67
+"32_Bank_Micro_DesignB_Exposure.R","OK",2.73
+"33_Bank_Micro_DesignC_Hedging.R","OK",1.66
+"34_Bank_Micro_DesignD_Mechanisms.R","OK",0.6
+"35_Bank_Micro_Robustness.R","OK",3.26

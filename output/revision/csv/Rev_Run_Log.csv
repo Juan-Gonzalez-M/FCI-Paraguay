@@ -1,0 +1,9 @@
+"script","status","minutes"
+"37_Micro_Freeze_Checks.R","OK",3.42
+"38_CHR_Plausibly_Exogenous.R","OK",1.26
+"39_PostIT_ExpandingFCI_IV.R","OK",0.27
+"40_LagAugmented_LP.R","OK",0.02
+"41_Falsification_Placebos.R","OK",0.01
+"42_FCI_Component_Exclusion.R","OK",0.02
+"43_External_Data_Fetch.R","OK",0.01
+"44_Enhanced_Instrument_Robustness.R","OK",0.16

@@ -33,3 +33,12 @@ output/reports/*.html
 # Peer review / feedback (private)
 COLLEAGUE*.docx
 feedback-*.md
+
+# Private working material (reviewer correspondence, revision strategy, drafts)
+private/
+
+# Office lock files
+~$*
+
+# More LaTeX artifacts
+*.synctex.gz
