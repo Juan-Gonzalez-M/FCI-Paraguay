@@ -20,7 +20,7 @@ micro_paths <- local({
   }
   list(
     root     = root,
-    bank_xlsx = file.path(root, "1.1 Tablas Boletín Bancos May26 1.xlsx"),
+    bank_xlsx = file.path(root, "data", "Boletin_Bancos_May2026.xlsx"),
     fci_xlsx  = file.path(root, "data", "FCI_data_1.xlsx"),
     fci_csv   = file.path(root, "output", "csv", "FCI_Complete_Results.csv"),
     out       = file.path(root, "output", "micro"),

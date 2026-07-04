@@ -1,4 +1,4 @@
-# Financial Conditions and Credit Transmission in a Dual-Engine Economy: Evidence from Paraguay
+# Dollar Shocks and Domestic Credit Conditions in a Partially Dollarized Economy: Evidence from Paraguay
 
 **Author:** Juan Manuel Gonzalez Masulli  
 **Affiliation:** Banco Central del Paraguay; Universidad Catolica Nuestra Senora de la Asuncion  
@@ -22,8 +22,11 @@ All input data are contained in a single Excel file:
 | File | Content | Observations |
 |------|---------|--------------|
 | `data/FCI_data_1.xlsx` | 6 sheets: FCI input variables, macro controls, global financial conditions, commodity prices, quarterly national accounts, monthly sectoral activity | 360 monthly (Jan 1996--Dec 2025); 127 quarterly (1994Q1--2025Q3) |
+| `data/Boletin_Bancos_May2026.xlsx` | Bank-level data from the BCP's published *Boletín de Bancos* (public source): credit by bank x sector x currency, balance-sheet items, ratios | 125 monthly (Jan 2016--May 2026), 20 banks |
 
-**Sheets:** Main_variables (12 FCI inputs + credit/deposit stocks), Datos_macro (IMAEP, CPI, credit), Global_Financial_Conditions (US 10Y, S&P 500, DXY, Selic, ToT), Main_Commodities_Prices (9 commodities), Quarterly_SA (GDP and expenditure components), Monthly_SA (sectoral activity indices).
+**FCI_data_1 sheets:** Main_variables (12 FCI inputs + credit/deposit stocks), Datos_macro (IMAEP, CPI, credit), Global_Financial_Conditions (US 10Y, S&P 500, DXY, Selic, ToT), Main_Commodities_Prices (9 commodities), Quarterly_SA (GDP and expenditure components), Monthly_SA (sectoral activity indices).
+
+External series used by the revision-extras scripts (Fed broad dollar index, BRL, EUR, GBP, TED spread) are downloaded from FRED automatically and cached in `output/revision/external/`.
 
 ## Replication
 
@@ -36,12 +39,17 @@ Missing packages are installed automatically by the pipeline.
 
 ### Running the Full Pipeline
 
+The analysis is organized in three sequential phases, each with its own master script:
+
 ```bash
 cd R/
-Rscript RUN_ALL.R
+Rscript RUN_ALL.R          # Phase 1: aggregate FCI pipeline (~8-10 min)
+Rscript RUN_MICRO.R        # Phase 2: bank-level micro analysis (~12 min)
+Rscript 36_Aggregate_FXAdjusted_Credit_LP.R   # FX-adjusted aggregate LPs (<1 min)
+Rscript RUN_REVISION.R     # Phase 3: identification & robustness extensions (~10 min)
 ```
 
-Runtime: approximately 8--10 minutes. Produces ~144 PNG charts and ~127 CSV data files in `output/png/` and `output/csv/`.
+Phase 1 produces ~144 PNG charts and ~127 CSV files in `output/png|csv/`; Phase 2 writes to `output/micro/`; Phase 3 writes to `output/revision/` (and requires Phases 1-2 to have run once). Additional packages for Phases 2-3: `data.table`, `fixest`, `modelsummary` (installed automatically if missing).
 
 ### Running Individual Scripts
 
@@ -58,17 +66,25 @@ Script `01_FCI_Complete.R` must run first; all subsequent scripts depend on its 
 ```
 FCI-Paraguay/
 ├── README.md
-├── R/                          # Analysis scripts (28 files)
-│   ├── RUN_ALL.R               # Master pipeline script
-│   ├── 01_FCI_Complete.R       # FCI construction (must run first)
-│   ├── 02--23_*.R              # Core analysis scripts (see table below)
-│   ├── 24--28_*.R              # Verification and revision computations
+├── R/                          # Analysis scripts
+│   ├── RUN_ALL.R               # Phase 1 master: aggregate FCI pipeline
+│   ├── 01--28_*.R              # Phase 1: FCI construction and aggregate analysis
+│   ├── RUN_MICRO.R             # Phase 2 master: bank-level analysis
+│   ├── micro_helpers.R         # Phase 2 shared utilities
+│   ├── 30--36_*.R              # Phase 2: micro panels, designs A-D, FX-adjusted LPs
+│   ├── README_MICRO.md         # Phase 2 documentation
+│   ├── RUN_REVISION.R          # Phase 3 master: identification & robustness extensions
+│   ├── revision_helpers.R      # Phase 3 shared utilities (LP/IV engines, FRED fetch)
+│   ├── 37--47_*.R              # Phase 3: CHR bounds, post-IT IV, batteries, audits
+│   ├── README_REVISION.md      # Phase 3 documentation
 │   └── CLAUDE.md               # Development reference (not needed for replication)
 ├── data/
-│   └── FCI_data_1.xlsx         # Single input file (6 sheets)
+│   ├── FCI_data_1.xlsx         # Aggregate input file (6 sheets)
+│   └── Boletin_Bancos_May2026.xlsx  # Bank-level input (public BCP bulletin)
 ├── output/                     # Generated outputs
-│   ├── csv/                    # Data tables (~127 files)
-│   └── png/                    # Charts (~144 files)
+│   ├── csv/  png/              # Phase 1 tables and charts
+│   ├── micro/                  # Phase 2 outputs (csv, png, rds caches)
+│   └── revision/               # Phase 3 outputs (csv, png, external data cache)
 └── docs/
     └── emr-template/           # Elsevier CAS LaTeX template files
 ```
@@ -102,6 +118,34 @@ FCI-Paraguay/
 | `23_FCI_Identification_Triangulation.R` | DXY-only IV-LP, GFC-PCA IV, globally-purged FCI, cross-method comparison |
 | `27_FCI_Published_Quarterly_LP.R` | Quarterly sectoral LP using published national accounts |
 | `28_FCI_Published_Monthly_LP.R` | Monthly sectoral LP using published activity indices |
+
+### Phase 2: Bank-Level Analysis (`RUN_MICRO.R`; details in `R/README_MICRO.md`)
+
+| Script | Purpose |
+|--------|---------|
+| `30_Bank_Micro_Data_Construction.R` | Panels from the Boletín de Bancos; valuation adjustment; shocks; merger protocol; reconciliation |
+| `31_Bank_Micro_DesignA_Currency.R` | Within-bank x sector currency-denomination LP; VIX and permutation placebos |
+| `32_Bank_Micro_DesignB_Exposure.R` | Bank lending channel via exposure heterogeneity (no instrument needed) |
+| `33_Bank_Micro_DesignC_Hedging.R` | Hedging heterogeneity: triple interaction, FX-share gradient, split samples |
+| `34_Bank_Micro_DesignD_Mechanisms.R` | Deposits and NPLs by currency |
+| `35_Bank_Micro_Robustness.R` | COVID, alt shocks, mergers, thresholds, valuation variants, inference battery |
+| `36_Aggregate_FXAdjusted_Credit_LP.R` | Aggregate credit LPs with constant-exchange-rate outcomes (validated replication of script 05) |
+
+### Phase 3: Identification & Robustness Extensions (`RUN_REVISION.R`; details in `R/README_REVISION.md`)
+
+| Script | Purpose |
+|--------|---------|
+| `37_Micro_Freeze_Checks.R` | Gradient robustness (ex-COVID, tightening-only); TCN-timing audit; reconciliation decomposition |
+| `38_CHR_Plausibly_Exogenous.R` | Conley-Hansen-Rossi plausibly-exogenous bounds with trade-calibrated direct effect |
+| `39_PostIT_ExpandingFCI_IV.R` | Expanding-window FCI; post-IT IV-LP with Anderson-Rubin sets and effective F |
+| `40_LagAugmented_LP.R` | Lag-augmented LPs (Montiel Olea & Plagborg-Moller 2021) |
+| `41_Falsification_Placebos.R` | Structurally insulated placebo outcomes (quarterly) |
+| `42_FCI_Component_Exclusion.R` | Leave-one-out FCI battery; quantities-at-t-1 variant; rates-only co-baseline |
+| `43_External_Data_Fetch.R` | FRED downloads (broad dollar, BRL, EUR, GBP, TED), cached |
+| `44_Enhanced_Instrument_Robustness.R` | Broad-dollar IV; EUR/GBP dollar-free placebo; enhanced purge; funding-stress horse race |
+| `45_COVID_Reclassification_Check.R` | COVID loan-reclassification sensitivity for the micro panel |
+| `46_USD_ShiftShare_Decomposition.R` | Within/between decomposition of the aggregate USD-PYG credit differential |
+| `47_FXAdj_PostIT_Asymmetric_Check.R` | FX-adjustment audit: post-IT subsample and asymmetric LPs |
 
 ## FCI Construction
 

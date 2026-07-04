@@ -1,9 +1,10 @@
-# Bank-Level Micro Phase (IREF Revision)
+# Bank-Level Micro Phase
 
-Implements `Bank_Level_Micro_Plan_IREF_Revision.md` for manuscript
-IREF-D-26-04765. **Fully additive**: nothing in the aggregate pipeline
-(scripts 01–23, `RUN_ALL.R`, `output/csv|png|pdf|reports`) is touched.
-All outputs go to `output/micro/{csv,png,rds}`.
+Bank-level extension of the FCI-Paraguay analysis: within-bank identification
+of the dollar-shock credit channel using publicly available data from the
+Central Bank of Paraguay's published Boletín de Bancos. **Fully additive**:
+nothing in the aggregate pipeline (scripts 01–23, `RUN_ALL.R`,
+`output/csv|png|pdf`) is touched. All outputs go to `output/micro/{csv,png,rds}`.
 
 ## How to run
 
@@ -30,6 +31,8 @@ Individual scripts can be run standalone in order (30 must run first).
 
 ## Key data-construction decisions (documented deviations / notes)
 
+0. **Input workbook:** `data/Boletin_Bancos_May2026.xlsx` (BCP Boletín de
+   Bancos, public; monthly, Jan 2016 – May 2026, 20 entities, 9 sheets).
 1. **TCN & CPI end Dec 2025** while the bank panel runs to May 2026, and the
    workbook's `TC` sheet is credit-card data, not exchange rates. FC-book
    valuation adjustment therefore stops at Dec 2025. There is a marked

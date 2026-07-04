@@ -17,7 +17,8 @@ scripts <- c(
   "43_External_Data_Fetch.R",
   "44_Enhanced_Instrument_Robustness.R",
   "45_COVID_Reclassification_Check.R",
-  "46_USD_ShiftShare_Decomposition.R"
+  "46_USD_ShiftShare_Decomposition.R",
+  "47_FXAdj_PostIT_Asymmetric_Check.R"
 )
 
 t_all <- Sys.time()

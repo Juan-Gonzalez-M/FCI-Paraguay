@@ -16,10 +16,16 @@ R-based Financial Conditions Index (FCI) for Paraguay. Calculates composite inde
 
 ```bash
 cd R/
-Rscript RUN_ALL.R             # Complete pipeline (all scripts)
+Rscript RUN_ALL.R             # Phase 1: aggregate pipeline (all scripts)
+Rscript RUN_MICRO.R           # Phase 2: bank-level micro analysis (scripts 30-36)
+Rscript RUN_REVISION.R        # Phase 3: identification/robustness extensions (37-47)
 # OR
 Rscript 01_FCI_Complete.R     # Main FCI calculation only
 ```
+
+Phases 2-3 are fully additive (write only to `output/micro/` and `output/revision/`);
+see `README_MICRO.md` and `README_REVISION.md` for details. Env var `MICRO_WCB_B`
+controls wild-bootstrap replications (default 999).
 
 ## Project Structure
 
@@ -27,12 +33,16 @@ Rscript 01_FCI_Complete.R     # Main FCI calculation only
 FCI-Paraguay/
 ├── R/                  # Analysis scripts + CLAUDE.md + RUN_ALL.R
 ├── data/               # Input data
-│   └── FCI_data_1.xlsx         # Main database (all sheets: Main_variables, Datos_macro, Global_Financial_Conditions, Main_Commodities_Prices, Quarterly_SA, Monthly_SA)
+│   ├── FCI_data_1.xlsx         # Main database (all sheets: Main_variables, Datos_macro, Global_Financial_Conditions, Main_Commodities_Prices, Quarterly_SA, Monthly_SA)
+│   └── Boletin_Bancos_May2026.xlsx  # Bank-level data (public BCP Boletin de Bancos, Jan 2016-May 2026, 20 banks, 9 sheets)
 ├── output/             # Generated outputs (~171 PNG + ~127 CSV)
-│   ├── png/            # PNG charts
-│   ├── csv/            # CSV data files
+│   ├── png/            # PNG charts (Phase 1)
+│   ├── csv/            # CSV data files (Phase 1)
 │   ├── pdf/            # Compiled paper PDF
-│   └── reports/        # Paper source (LaTeX) + supporting reports
+│   ├── reports/        # Paper source (LaTeX) + supporting reports
+│   ├── micro/          # Phase 2 outputs: csv/, png/ (260-269), rds/ panel caches
+│   ├── revision/       # Phase 3 outputs: csv/ (Rev_*), png/ (280-291), external/ (FRED cache)
+│   └── submission/     # IREF submission package (manuscript tex = FCI_Paraguay_IREF_Submission.tex; gitignored)
 └── docs/               # EMR template, SVG diagrams, verification log
 ```
 
@@ -61,7 +71,9 @@ FCI-Paraguay/
 | `21_FCI_Commodity_Puzzle.R` | Commodity puzzle investigation: disaggregated commodity regressions, ToT vs aggregate, offsetting effects (agricultural vs oil), nonlinear effects, commodity-credit interaction LP |
 | `22_FCI_Regional_Spillovers.R` | Regional spillover analysis: Brazil Selic → Paraguay FCI contagion vs common shocks, asymmetric spillovers, spillover LP, bivariate vs controlled VAR |
 | `23_FCI_Identification_Triangulation.R` | Identification triangulation: DXY-only IV-LP (single strong instrument), GFC-PCA composite IV, globally-purged FCI, 4-panel cross-method comparison figure |
-| `RUN_ALL.R` | Master script - runs complete pipeline |
+| `RUN_ALL.R` | Master script - runs complete Phase 1 pipeline |
+| `30-36 + RUN_MICRO.R + micro_helpers.R` | **Phase 2 (bank-level)**: panels/valuation/shocks (30), Design A currency test (31), Design B exposure (32), Design C hedging (33), Design D mechanisms (34), robustness (35), FX-adjusted aggregate LPs (36). See `README_MICRO.md` |
+| `37-47 + RUN_REVISION.R + revision_helpers.R` | **Phase 3 (revision extras)**: freeze checks (37), CHR bounds (38), expanding-FCI post-IT IV (39), lag-augmented LP (40), placebos (41), FCI LOO battery (42), FRED fetch (43), instrument robustness (44), COVID reclassification (45), shift-share (46), FX-adjustment audit (47). See `README_REVISION.md` |
 
 ## Data
 
