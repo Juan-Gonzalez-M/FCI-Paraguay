@@ -255,10 +255,12 @@ run_lp_asymmetric_q <- function(data, y_var, fci_var, max_h, n_lags = 2,
     idx_pos <- which(rownames(coef_test) == fci_pos)
     idx_neg <- which(rownames(coef_test) == fci_neg)
 
-    coef_diff <- coef_test[idx_pos, 1] - coef_test[idx_neg, 1]
-    var_diff <- vcov_hac[idx_pos, idx_pos] + vcov_hac[idx_neg, idx_neg] -
+    # Symmetry null under the magnitude coding (fci_neg = |min(FCI,0)|):
+    # symmetric response means beta_pos = -beta_neg, i.e. H0: beta_pos + beta_neg = 0.
+    coef_sum <- coef_test[idx_pos, 1] + coef_test[idx_neg, 1]
+    var_sum <- vcov_hac[idx_pos, idx_pos] + vcov_hac[idx_neg, idx_neg] +
                 2 * vcov_hac[idx_pos, idx_neg]
-    wald_p <- 1 - pchisq(coef_diff^2 / var_diff, df = 1)
+    wald_p <- 1 - pchisq(coef_sum^2 / var_sum, df = 1)
 
     results <- rbind(results, data.frame(
       horizon = h,
@@ -449,6 +451,7 @@ cat("PART B: SUPPLY-SIDE QUARTERLY LOCAL PROJECTIONS\n")
 cat("================================================================================\n\n")
 
 supply_results <- list()
+supply_results_med <- list()
 
 for (sector in SUPPLY_SECTORS) {
   y_var <- paste0(sector, "_yoy")
@@ -460,11 +463,26 @@ for (sector in SUPPLY_SECTORS) {
   data_sub <- analysis_q %>% filter(!is.na(!!sym(y_var)))
   cat(sprintf("  %s (n=%d) ... ", SUPPLY_LABELS[sector], nrow(data_sub)))
 
+  # Primary specification: TOTAL effect (no credit control). Real credit
+  # growth is a hypothesized mediator of FCI transmission; conditioning on it
+  # estimates a controlled direct effect instead (mediation variant below,
+  # reported in the online appendix only).
   res <- run_lp_quarterly(
+    data_sub, y_var, "FCI_COMP", CONFIG$max_horizon_q, CONFIG$n_lags,
+    control_vars = c("IPC_yoy"),
+    min_obs = CONFIG$min_obs
+  )
+  res_med <- run_lp_quarterly(
     data_sub, y_var, "FCI_COMP", CONFIG$max_horizon_q, CONFIG$n_lags,
     control_vars = c("Cred_Real_yoy", "IPC_yoy"),
     min_obs = CONFIG$min_obs
   )
+  if (nrow(res_med) > 0) {
+    res_med$sector <- sector
+    res_med$sector_label <- SUPPLY_LABELS[sector]
+    res_med$side <- "Supply"
+    supply_results_med[[sector]] <- res_med
+  }
 
   if (nrow(res) > 0) {
     res$sector <- sector
@@ -537,6 +555,7 @@ cat("PART C: DEMAND-SIDE QUARTERLY LOCAL PROJECTIONS\n")
 cat("================================================================================\n\n")
 
 demand_results <- list()
+demand_results_med <- list()
 
 for (sector in DEMAND_SECTORS) {
   y_var <- paste0(sector, "_yoy")
@@ -548,11 +567,26 @@ for (sector in DEMAND_SECTORS) {
   data_sub <- analysis_q %>% filter(!is.na(!!sym(y_var)))
   cat(sprintf("  %s (n=%d) ... ", DEMAND_LABELS[sector], nrow(data_sub)))
 
+  # Primary specification: TOTAL effect (no credit control). Real credit
+  # growth is a hypothesized mediator of FCI transmission; conditioning on it
+  # estimates a controlled direct effect instead (mediation variant below,
+  # reported in the online appendix only).
   res <- run_lp_quarterly(
+    data_sub, y_var, "FCI_COMP", CONFIG$max_horizon_q, CONFIG$n_lags,
+    control_vars = c("IPC_yoy"),
+    min_obs = CONFIG$min_obs
+  )
+  res_med <- run_lp_quarterly(
     data_sub, y_var, "FCI_COMP", CONFIG$max_horizon_q, CONFIG$n_lags,
     control_vars = c("Cred_Real_yoy", "IPC_yoy"),
     min_obs = CONFIG$min_obs
   )
+  if (nrow(res_med) > 0) {
+    res_med$sector <- sector
+    res_med$sector_label <- DEMAND_LABELS[sector]
+    res_med$side <- "Demand"
+    demand_results_med[[sector]] <- res_med
+  }
 
   if (nrow(res) > 0) {
     res$sector <- sector
@@ -613,6 +647,11 @@ if (nrow(all_demand) > 0) {
 
 write.csv(all_demand, file.path(CONFIG$output_dir, "csv", "PubQ_LP_Demand_Full.csv"),
           row.names = FALSE)
+all_med <- bind_rows(bind_rows(supply_results_med), bind_rows(demand_results_med))
+write.csv(all_med,
+          file.path(CONFIG$output_dir, "csv", "PubQ_LP_CreditControlled_Mediation.csv"),
+          row.names = FALSE)
+cat("Saved: PubQ_LP_CreditControlled_Mediation.csv (credit-controlled direct-effect variant, appendix)\n")
 cat("Saved: PubQ_LP_Demand_Full.csv\n")
 
 # Combined heatmap at h=2Q and h=4Q

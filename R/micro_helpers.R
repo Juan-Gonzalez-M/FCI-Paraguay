@@ -105,7 +105,12 @@ WCB_B <- as.integer(Sys.getenv("MICRO_WCB_B", "999"))   # override for quick run
 #   rhs     : character vector of regressors (must contain `param`)
 #   fe      : fixed-effects part as string, e.g. "bank^sector^ym + bank^sector^cur"
 #   cluster : cluster variable name
-wcb_pval <- function(dt, yvar, rhs, fe, param, cluster = "bank", B = WCB_B) {
+#   weights : "rademacher" (default) or "webb" (6-point distribution;
+#             recommended with few clusters, MacKinnon-Webb 2018)
+wcb_pval <- function(dt, yvar, rhs, fe, param, cluster = "bank", B = WCB_B,
+                     weights = c("rademacher", "webb")) {
+  weights <- match.arg(weights)
+  webb_vals <- c(-sqrt(1.5), -1, -sqrt(0.5), sqrt(0.5), 1, sqrt(1.5))
   out <- tryCatch({
     f_full <- as.formula(paste(yvar, "~", paste(rhs, collapse = " + "), "|", fe))
     m1 <- fixest::feols(f_full, data = dt, cluster = as.formula(paste0("~", cluster)),
@@ -124,7 +129,8 @@ wcb_pval <- function(dt, yvar, rhs, fe, param, cluster = "bank", B = WCB_B) {
     fcl   <- as.formula(paste0("~", cluster))
     tb    <- numeric(B)
     for (b in seq_len(B)) {
-      w  <- sample(c(-1, 1), G, replace = TRUE)[cl_i]
+      w  <- if (weights == "webb") sample(webb_vals, G, replace = TRUE)[cl_i]
+            else sample(c(-1, 1), G, replace = TRUE)[cl_i]
       ds[, .wcb_y := fit0 + e0 * w]
       mb <- fixest::feols(as.formula(paste(".wcb_y ~", paste(rhs, collapse = " + "), "|", fe)),
                           data = ds, cluster = fcl, notes = FALSE)

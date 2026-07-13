@@ -26,7 +26,8 @@ setnames(qsa, c("Electricidad y agua", "Consumo Público", "Consumo Privado"),
 
 PLACEBOS <- c(Electricidad = "Electricidad", Consumo_Publico = "Consumo_Publico",
               Agricultura = "Agricultura")
-CONTRASTS <- c(PIB = "PIB")
+CONTRASTS <- c(PIB = "PIB", PIB_exAE = "PIB_exAE")
+qsa[, PIB_exAE := PIB - Agricultura - Electricidad]
 for (v in c(PLACEBOS, CONTRASTS)) qsa[, paste0(v, "_yoy") :=
                                         100 * (get(v) / shift(get(v), 4) - 1)]
 
@@ -86,9 +87,9 @@ summ <- res[horizon == 4, .(outcome, shock, role, coef = round(coef, 3),
 write_rev_csv(summ, "Rev_Falsification_Summary_h4.csv")
 
 res[, olab := factor(outcome, levels = c("Electricidad", "Consumo_Publico",
-                                         "Agricultura", "PIB", "Cred"),
+                                         "Agricultura", "PIB", "PIB_exAE", "Cred"),
                      labels = c("Electricity/water (binational)", "Public consumption",
-                                "Agriculture", "GDP", "Real credit"))]
+                                "Agriculture", "GDP", "GDP ex-Agri & Electricity", "Real credit"))]
 res[, slab := ifelse(shock == "FCI", "FCI (comprehensive)", "Purged-DXY shock")]
 pF <- ggplot(res, aes(horizon, coef)) +
   geom_hline(yintercept = 0, linetype = 2, color = "grey50") +

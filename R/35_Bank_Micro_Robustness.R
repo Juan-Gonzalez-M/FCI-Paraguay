@@ -16,6 +16,7 @@
 t0 <- Sys.time()
 source("micro_helpers.R")
 library(fixest)
+set.seed(20260712)   # fix bootstrap draws so reported p-values are exactly reproducible
 cat("=== 35: Robustness battery (Design A) ===\n")
 
 macro <- read_rds_micro("micro_macro.rds")

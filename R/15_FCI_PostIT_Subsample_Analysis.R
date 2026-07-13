@@ -528,10 +528,12 @@ run_lp_asymmetric <- function(data, y_var, fci_var, max_h, n_lags = 2, control_v
     idx_pos <- which(rownames(coef_test) == fci_pos)
     idx_neg <- which(rownames(coef_test) == fci_neg)
 
-    coef_diff <- coef_test[idx_pos, 1] - coef_test[idx_neg, 1]
-    var_diff <- vcov_hac[idx_pos, idx_pos] + vcov_hac[idx_neg, idx_neg] -
+    # Symmetry null under the magnitude coding (fci_neg = |min(FCI,0)|):
+    # symmetric response means beta_pos = -beta_neg, i.e. H0: beta_pos + beta_neg = 0.
+    coef_sum <- coef_test[idx_pos, 1] + coef_test[idx_neg, 1]
+    var_sum <- vcov_hac[idx_pos, idx_pos] + vcov_hac[idx_neg, idx_neg] +
       2 * vcov_hac[idx_pos, idx_neg]
-    wald_p <- 1 - pchisq(coef_diff^2 / var_diff, df = 1)
+    wald_p <- 1 - pchisq(coef_sum^2 / var_sum, df = 1)
 
     results <- rbind(results, data.frame(
       horizon = h,

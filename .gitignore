@@ -42,3 +42,6 @@ private/
 
 # More LaTeX artifacts
 *.synctex.gz
+
+# Submission archives (EMR + IREF v1 snapshots; private)
+output/archive/

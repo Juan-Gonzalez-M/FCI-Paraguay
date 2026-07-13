@@ -17,8 +17,8 @@ R-based Financial Conditions Index (FCI) for Paraguay. Calculates composite inde
 ```bash
 cd R/
 Rscript RUN_ALL.R             # Phase 1: aggregate pipeline (all scripts)
-Rscript RUN_MICRO.R           # Phase 2: bank-level micro analysis (scripts 30-36)
-Rscript RUN_REVISION.R        # Phase 3: identification/robustness extensions (37-47)
+Rscript RUN_MICRO.R           # Phase 2: bank-level micro analysis (scripts 30-36, 48)
+Rscript RUN_REVISION.R        # Phase 3: identification/robustness extensions (37-47, 49)
 # OR
 Rscript 01_FCI_Complete.R     # Main FCI calculation only
 ```
@@ -38,11 +38,12 @@ FCI-Paraguay/
 ├── output/             # Generated outputs (~171 PNG + ~127 CSV)
 │   ├── png/            # PNG charts (Phase 1)
 │   ├── csv/            # CSV data files (Phase 1)
-│   ├── pdf/            # Compiled paper PDF
+│   ├── pdf/            # Compiled online appendix PDF
 │   ├── reports/        # Paper source (LaTeX) + supporting reports
 │   ├── micro/          # Phase 2 outputs: csv/, png/ (260-269), rds/ panel caches
 │   ├── revision/       # Phase 3 outputs: csv/ (Rev_*), png/ (280-291), external/ (FRED cache)
-│   └── submission/     # IREF submission package (manuscript tex = FCI_Paraguay_IREF_Submission.tex; gitignored)
+│   ├── submission/     # IREF submission package — WORKING copy for the revision (gitignored)
+│   └── archive/        # Frozen snapshots: EMR_2026-03/, IREF_v1_2026-06/ (gitignored)
 └── docs/               # EMR template, SVG diagrams, verification log
 ```
 
@@ -72,8 +73,8 @@ FCI-Paraguay/
 | `22_FCI_Regional_Spillovers.R` | Regional spillover analysis: Brazil Selic → Paraguay FCI contagion vs common shocks, asymmetric spillovers, spillover LP, bivariate vs controlled VAR |
 | `23_FCI_Identification_Triangulation.R` | Identification triangulation: DXY-only IV-LP (single strong instrument), GFC-PCA composite IV, globally-purged FCI, 4-panel cross-method comparison figure |
 | `RUN_ALL.R` | Master script - runs complete Phase 1 pipeline |
-| `30-36 + RUN_MICRO.R + micro_helpers.R` | **Phase 2 (bank-level)**: panels/valuation/shocks (30), Design A currency test (31), Design B exposure (32), Design C hedging (33), Design D mechanisms (34), robustness (35), FX-adjusted aggregate LPs (36). See `README_MICRO.md` |
-| `37-47 + RUN_REVISION.R + revision_helpers.R` | **Phase 3 (revision extras)**: freeze checks (37), CHR bounds (38), expanding-FCI post-IT IV (39), lag-augmented LP (40), placebos (41), FCI LOO battery (42), FRED fetch (43), instrument robustness (44), COVID reclassification (45), shift-share (46), FX-adjustment audit (47). See `README_REVISION.md` |
+| `30-36, 48 + RUN_MICRO.R + micro_helpers.R` | **Phase 2 (bank-level)**: panels/valuation/shocks (30), Design A currency test (31), Design B exposure (32), Design C hedging (33), Design D mechanisms (34), robustness (35), FX-adjusted aggregate LPs (36), gradient time-robust inference (48: two-way bank×month, DK, month-clustered WCB; Part 2 sector-robust + moving-block; Part 4 Webb-weight WCB, CR2/Satterthwaite, leave-one-sector-out; Part 5 seeded ex-COVID gradient). Scripts 33/35 seeded (set.seed 20260712). See `README_MICRO.md` |
+| `37-47 + RUN_REVISION.R + revision_helpers.R` | **Phase 3 (revision extras)**: freeze checks (37), CHR bounds (38), expanding-FCI post-IT IV (39), lag-augmented LP (40), placebos (41), FCI LOO battery (42), FRED fetch (43), instrument robustness (44), COVID reclassification (45), shift-share (46), FX-adjustment audit (47), IV/AR scaling audit (49: 2SLS=RF/FS identity, conditional-FS decomposition, AR-at-OLS; Part 4 CHR delta-method interval; Part 5 CHR joint moving-block bootstrap). See `README_REVISION.md` |
 
 ## Data
 
@@ -434,9 +435,9 @@ Results from the comprehensive analysis (March 2026, 360-observation sample Jan 
 
 | File | Description |
 |------|-------------|
-| `output/reports/FCI_Paraguay_EMR_Submission.tex` | **PRIMARY: journal submission LaTeX source** |
-| `output/pdf/FCI_Paraguay_EMR_Submission.pdf` | Compiled submission PDF |
-| `output/reports/FCI_Paraguay_EMR_Submission.md` | Markdown mirror of final paper |
+| `output/submission/FCI_Paraguay_IREF_Submission.tex` | **PRIMARY: IREF submission LaTeX source (working copy for the revision)** |
+| `output/archive/IREF_v1_2026-06/` | Frozen snapshot of the first IREF submission (June 2026) |
+| `output/archive/EMR_2026-03/` | Archived EMR-era manuscript and build files |
 | `output/reports/FCI_Paraguay_Online_Appendix.md` | Online appendix (referenced by paper) |
 | `output/reports/FCI_Paraguay_Technical_Report.md` | Technical robustness documentation |
 | `output/reports/fci-paraguay.bib` | Bibliography database |

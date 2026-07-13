@@ -348,11 +348,13 @@ run_lp_asymmetric <- function(data, y_var, fci_var, max_h, n_lags = 2, control_v
     idx_pos <- which(rownames(coef_test) == fci_pos)
     idx_neg <- which(rownames(coef_test) == fci_neg)
 
-    # Wald test for asymmetry
-    coef_diff <- coef_test[idx_pos, 1] - coef_test[idx_neg, 1]
-    var_diff <- vcov_hac[idx_pos, idx_pos] + vcov_hac[idx_neg, idx_neg] -
+    # Wald test for asymmetry. Coding: fci_pos = max(FCI,0), fci_neg = |min(FCI,0)|
+    # (easing enters as a positive magnitude), so a symmetric response means
+    # beta_pos = -beta_neg. The null is therefore H0: beta_pos + beta_neg = 0.
+    coef_sum <- coef_test[idx_pos, 1] + coef_test[idx_neg, 1]
+    var_sum <- vcov_hac[idx_pos, idx_pos] + vcov_hac[idx_neg, idx_neg] +
                 2 * vcov_hac[idx_pos, idx_neg]
-    wald_p <- 1 - pchisq(coef_diff^2 / var_diff, df = 1)
+    wald_p <- 1 - pchisq(coef_sum^2 / var_sum, df = 1)
 
     results <- rbind(results, data.frame(
       horizon = h,
@@ -624,6 +626,35 @@ for (fci in LP_CONFIG$fci_types) {
 
 all_credit_std <- bind_rows(credit_results_std)
 all_credit_asym <- bind_rows(credit_results_asym)
+
+# --- Dependent-variable means on the exact estimation samples ---------------
+# For the economic-magnitude statement in the paper: the mean of the REAL
+# credit-growth dependent variable on the same sample as each LP regression
+depvar_means <- list()
+for (cred in LP_CONFIG$credit_types) {
+  y_var <- paste0("Cred_", cred)
+  for (h in c(6, 12, 18)) {
+    dd <- analysis_data %>%
+      mutate(y_fwd = lead(!!sym(y_var), h),
+             y_lag1 = lag(!!sym(y_var), 1), y_lag2 = lag(!!sym(y_var), 2),
+             fci_lag1 = lag(FCI_exCredit, 1),
+             IMAEP_yoy_l1 = lag(IMAEP_yoy, 1), IMAEP_yoy_l2 = lag(IMAEP_yoy, 2),
+             IPC_yoy_l1 = lag(IPC_yoy, 1), IPC_yoy_l2 = lag(IPC_yoy, 2)) %>%
+      dplyr::select(y_fwd, FCI_exCredit, y_lag1, y_lag2, fci_lag1,
+                    IMAEP_yoy, IMAEP_yoy_l1, IMAEP_yoy_l2,
+                    IPC_yoy, IPC_yoy_l1, IPC_yoy_l2) %>%
+      na.omit()
+    depvar_means[[paste(cred, h)]] <- data.frame(
+      credit_type = cred, horizon = h, n = nrow(dd),
+      mean_depvar = mean(dd$y_fwd), sd_depvar = sd(dd$y_fwd))
+  }
+}
+depvar_means <- bind_rows(depvar_means)
+write.csv(depvar_means,
+          file.path(LP_CONFIG$output_dir, "LP_DepVar_Means.csv"),
+          row.names = FALSE)
+cat("\nDependent-variable means on estimation samples (LP_DepVar_Means.csv):\n")
+print(depvar_means, row.names = FALSE)
 
 
 ################################################################################

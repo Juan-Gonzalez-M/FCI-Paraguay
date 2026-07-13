@@ -102,7 +102,7 @@ dpost <- d[fecha >= POSTIT]
 iv_res <- list()
 for (h in 1:18) {
   r <- iv_lp_h(dpost, "Cred_Real_Total", "FCI_EXP_exCredit", "DXY", h,
-               ar_grid = seq(-300, 150, by = 1))
+               ar_grid = seq(-2000, 300, by = 1))
   if (is.null(r)) next
   iv_res[[h]] <- r
   cat(sprintf("  h=%2d: b=%7.2f  se=%5.2f  p=%.3f  FS-F=%6.1f  effF=%6.1f  AR90=[%s, %s]\n",

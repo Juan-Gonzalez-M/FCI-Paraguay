@@ -124,12 +124,12 @@ pC <- ggplot(p12, aes(gamma, coef)) +
   geom_vline(xintercept = gcal12, color = "firebrick", linewidth = 0.8) +
   geom_vline(xintercept = bd[horizon == 12, gamma_breakdown],
              color = "grey30", linetype = 3, linewidth = 0.8) +
-  annotate("text", x = gcal12, y = max(p12$ci_upper), hjust = -0.05, vjust = 1,
+  annotate("text", x = gcal12, y = max(p12$ci_upper), hjust = 1.05, vjust = 1,
            label = "calibrated trade channel", color = "firebrick", size = 3.2) +
   annotate("text", x = bd[horizon == 12, gamma_breakdown], y = min(p12$ci_lower),
            hjust = -0.05, vjust = 0, label = "breakdown gamma*",
            color = "grey30", size = 3.2) +
-  labs(title = "Plausibly-exogenous bounds (Conley-Hansen-Rossi 2012), h = 12",
+  labs(title = "Plausibly exogenous bounds (Conley-Hansen-Rossi 2012), h = 12",
        subtitle = "2SLS credit coefficient allowing DXY a direct effect gamma on credit; 90% CI (Newey-West)",
        x = "Assumed direct effect of DXY on credit growth (pp per DXY point)",
        y = "Credit-channel coefficient (pp per FCI unit)") +

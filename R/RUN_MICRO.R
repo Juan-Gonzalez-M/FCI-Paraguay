@@ -15,7 +15,8 @@ scripts <- c(
   "32_Bank_Micro_DesignB_Exposure.R",
   "33_Bank_Micro_DesignC_Hedging.R",
   "34_Bank_Micro_DesignD_Mechanisms.R",
-  "35_Bank_Micro_Robustness.R"
+  "35_Bank_Micro_Robustness.R",
+  "48_Gradient_TimeRobust_Inference.R"
 )
 
 t_all <- Sys.time()

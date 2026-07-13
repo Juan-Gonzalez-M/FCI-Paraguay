@@ -22,6 +22,7 @@
 t0 <- Sys.time()
 source("micro_helpers.R")
 library(fixest)
+set.seed(20260712)   # fix bootstrap draws so reported p-values are exactly reproducible
 cat("=== 33: Design C - hedging heterogeneity ===\n")
 
 dA <- read_rds_micro("micro_designA_panel.rds")   # from script 31
