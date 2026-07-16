@@ -156,13 +156,19 @@ for (inst in available_instruments) {
   ct <- lmtest::coeftest(m_indiv, vcov = vcov_hac)
   idx <- which(rownames(ct) == inst)
 
-  # Partial R² (incremental from adding this instrument to controls-only model)
+  # Diagnostics under three explicitly labeled conventions (round-8 fix):
+  #   (1) classical: partial R2 = 1 - SSR(full)/SSR(controls-only)
+  #       (equivalently t_cls^2/(t_cls^2+df)); F_classical = t_cls^2
+  #   (2) HAC: Newey-West(3) t and its square (what the old "F_stat" column was)
+  #   (3) incremental Delta-R2 (what the old "Partial_R2" column was) -- kept
+  #       for reference under its correct name
   f_base <- as.formula(paste("FCI_ENDO_exCredit_AVG ~", paste(control_vars, collapse = " + ")))
   m_base <- lm(f_base, data = first_stage_data)
-  partial_r2 <- summary(m_indiv)$r.squared - summary(m_base)$r.squared
-
-  # Individual F-statistic
-  f_stat <- ct[idx, 3]^2  # t² ≈ F for single restriction
+  delta_r2_incr <- summary(m_indiv)$r.squared - summary(m_base)$r.squared
+  partial_r2_cls <- 1 - sum(resid(m_indiv)^2) / sum(resid(m_base)^2)
+  t_cls <- summary(m_indiv)$coefficients[inst, 3]
+  f_cls <- t_cls^2
+  f_hac <- ct[idx, 3]^2  # HAC t^2 (single restriction)
 
   instrument_diag <- rbind(instrument_diag, data.frame(
     Instrument = inst,
@@ -170,8 +176,14 @@ for (inst in available_instruments) {
     Std_Error = ct[idx, 2],
     t_stat = ct[idx, 3],
     p_value = ct[idx, 4],
-    Partial_R2 = partial_r2,
-    F_stat = f_stat,
+    Partial_R2 = partial_r2_cls,
+    F_stat = f_cls,
+    t_hac_nw3 = ct[idx, 3],
+    F_hac_nw3 = f_hac,
+    t_classical = t_cls,
+    F_classical = f_cls,
+    partialR2_classical = partial_r2_cls,
+    deltaR2_incremental = delta_r2_incr,
     stringsAsFactors = FALSE
   ))
 }

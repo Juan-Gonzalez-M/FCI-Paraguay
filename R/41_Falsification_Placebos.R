@@ -86,6 +86,53 @@ summ <- res[horizon == 4, .(outcome, shock, role, coef = round(coef, 3),
                             p = round(p_value, 3))]
 write_rev_csv(summ, "Rev_Falsification_Summary_h4.csv")
 
+# ---------------------------------------------------------------------------
+# Same-assembly comparison rows (round-8, colleague item S3): re-run the FCI
+# falsification LPs under Table 10's assembly -- end-of-quarter monthly FCI
+# (last month of the quarter, script 27 convention) and IPC control with two
+# quarterly lags -- so Tables 10 and 12 are comparable row-for-row and the
+# falsification verdict does not hinge on the assembly choice.
+# ---------------------------------------------------------------------------
+cat("\n  Same-assembly (Table 10 convention) falsification rows...\n")
+dq_eoq <- dm[, .(FCI_eoq = FCI_COMP_AVG[which.max(fecha)],
+                 IPC_yoy_q = mean(IPC_yoy, na.rm = TRUE)),
+             by = .(qtr = as.Date(cut(fecha, "quarter")))]
+setorder(dq_eoq, qtr)
+q2 <- merge(qsa[, c("qtr", paste0(c(PLACEBOS, CONTRASTS), "_yoy")), with = FALSE],
+            dq_eoq, by = "qtr")
+q2[, `:=`(IPC_l1 = shift(IPC_yoy_q, 1), IPC_l2 = shift(IPC_yoy_q, 2))]
+
+lp_q10 <- function(y, max_h = 8) {
+  out <- list()
+  for (h in 1:max_h) {
+    dh <- as.data.frame(q2)
+    dh$y_fwd <- dplyr::lead(dh[[y]], h)
+    dh$y_l1 <- dplyr::lag(dh[[y]], 1); dh$y_l2 <- dplyr::lag(dh[[y]], 2)
+    dh$x_l1 <- dplyr::lag(dh$FCI_eoq, 1)
+    reg <- na.omit(dh[, c("y_fwd", "FCI_eoq", "y_l1", "y_l2", "x_l1",
+                          "IPC_yoy_q", "IPC_l1", "IPC_l2")])
+    if (nrow(reg) < 25) next
+    m <- lm(y_fwd ~ FCI_eoq + y_l1 + y_l2 + x_l1 + IPC_yoy_q + IPC_l1 + IPC_l2, reg)
+    ct <- coeftest(m, vcov. = NeweyWest(m, lag = h + 1, prewhite = FALSE))
+    out[[h]] <- data.table(horizon = h, coef = ct["FCI_eoq", 1], se = ct["FCI_eoq", 2],
+                           p_value = ct["FCI_eoq", 4], n_obs = nrow(reg))
+  }
+  rbindlist(out)
+}
+res10 <- list()
+for (y in c(names(PLACEBOS), names(CONTRASTS))) {
+  r <- lp_q10(paste0(y, "_yoy"))
+  r[, `:=`(outcome = y, shock = "FCI",
+           assembly = "Table10 (end-of-quarter FCI, IPC + 2 lags)",
+           role = fifelse(y %in% names(PLACEBOS), "placebo", "contrast"))]
+  res10[[y]] <- r
+  k <- r[horizon == 4]
+  if (nrow(k)) cat(sprintf("    [%s ~ FCI, T10 assembly] h=4: b=%7.3f (p=%.3f)\n",
+                           y, k$coef, k$p_value))
+}
+res10 <- rbindlist(res10)
+write_rev_csv(res10, "Rev_Falsification_SameAssembly.csv")
+
 res[, olab := factor(outcome, levels = c("Electricidad", "Consumo_Publico",
                                          "Agricultura", "PIB", "PIB_exAE", "Cred"),
                      labels = c("Electricity/water (binational)", "Public consumption",

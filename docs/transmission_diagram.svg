@@ -99,7 +99,7 @@
   
   <!-- SECTION 3: Dual-Engine Economy (Bottom) -->
   <rect x="20" y="295" width="760" height="195" rx="5" fill="#f4ecf7" stroke="#8e44ad" stroke-width="1.5"/>
-  <text x="40" y="315" font-family="Times New Roman, serif" font-size="12" font-weight="bold" fill="#6c3483">Dual-Engine Economy</text>
+  <text x="40" y="315" font-family="Times New Roman, serif" font-size="12" font-weight="bold" fill="#6c3483">Segmented Economy</text>
   
   <!-- Credit/FCI source -->
   <rect x="60" y="335" width="80" height="40" rx="4" fill="#e74c3c" stroke="#c0392b" stroke-width="1.5"/>
@@ -120,8 +120,8 @@
   <text x="290" y="345" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="white">Finance-Dependent (Y^F)</text>
   <text x="290" y="360" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="white">ω_F ≈ 55% of GDP</text>
   <line x1="215" y1="368" x2="365" y2="368" stroke="white" stroke-width="0.5"/>
-  <text x="290" y="382" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="white">Investment: −8.33 pp</text>
-  <text x="290" y="393" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="white">Construction: −5.84 pp</text>
+  <text x="290" y="382" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="white">Investment: −7.95 pp</text>
+  <text x="290" y="393" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="white">Construction: −4.90 pp</text>
   
   <!-- Agriculture box -->
   <rect x="200" y="410" width="180" height="55" rx="4" fill="#27ae60" stroke="#1e8449" stroke-width="1.5"/>

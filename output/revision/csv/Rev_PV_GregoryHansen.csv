@@ -1,0 +1,7 @@
+sample,y,x,model,n,GH_stat,break_at_min,verdict_scan,t_at_2011m5,verdict_2011m5,cv_1pct,cv_5pct,cv_10pct
+full,FCI_EXP_ENDO_exCredit,DXY,C,325,-3.701,2004-01-01,no rejection,-2.941,no rejection,-5.13,-4.61,-4.34
+full,FCI_EXP_ENDO_exCredit,DXY,CT,325,-5.221,2004-06-01,reject at 5%,-3.152,no rejection,-5.45,-4.99,-4.72
+full,FCI_EXP_ENDO_exCredit,DXY,CS,325,-4.168,2004-01-01,no rejection,-3.379,no rejection,-5.47,-4.95,-4.68
+full,FCI_EXP_ENDO_exC_exTCN,DXY,C,325,-3.726,2004-01-01,no rejection,-2.849,no rejection,-5.13,-4.61,-4.34
+full,FCI_EXP_ENDO_exC_exTCN,DXY,CT,325,-5.238,2004-02-01,reject at 5%,-3.197,no rejection,-5.45,-4.99,-4.72
+full,FCI_EXP_ENDO_exC_exTCN,DXY,CS,325,-3.954,2004-01-01,no rejection,-3.528,no rejection,-5.47,-4.95,-4.68

@@ -1,0 +1,6 @@
+"pair","correlation"
+"ZSCORE raw vs scale()d (exCredit)",1
+"ZSCORE raw vs scale()d (comprehensive)",0.999999999999998
+"one-sided exCredit ZSCORE vs composite FCI_exCredit_AVG",0.933887218592959
+"one-sided comprehensive ZSCORE vs composite FCI_COMP_AVG",0.961328574198532
+"one-sided exCredit ZSCORE vs expanding-z exCredit (FCI_EXP_exCredit)",0.652106319453186

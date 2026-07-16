@@ -1,0 +1,9 @@
+sample,y,x,n,beta_x1,eg_adf_stat,cv_5pct,cv_10pct,cointegrated_at
+full,FCI_EXP_ENDO_exCredit,DXY,325,0.0317,-3.033,-3.34,-3.04,no
+full,FCI_ENDO_exCredit_AVG,DXY,336,0.0409,-1.612,-3.34,-3.04,no
+full,lcred,DXY,336,0.01195,0.458,-3.34,-3.04,no
+full,lcred,FCI_EXP_ENDO_exCredit+DXY,325,-0.66588,-0.658,-3.74,-3.45,no
+postIT,FCI_EXP_ENDO_exCredit,DXY,176,0.01697,-2.907,-3.34,-3.04,no
+postIT,FCI_ENDO_exCredit_AVG,DXY,176,-0.00387,-1.267,-3.34,-3.04,no
+postIT,lcred,DXY,176,0.03181,-1.947,-3.34,-3.04,no
+postIT,lcred,FCI_EXP_ENDO_exCredit+DXY,176,0.93981,-1.694,-3.74,-3.45,no

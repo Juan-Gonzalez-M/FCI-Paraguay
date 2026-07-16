@@ -1,0 +1,5 @@
+sample,y,x,case,order,n,F_stat,F_p,t_stat,t_p,ect_coef
+full,FCI_EXP_ENDO_exC_exTCN,DXY,3,"2,0",325,5.85,0.046,-3.359,0.0359,-0.0609
+full,FCI_EXP_RATES,DXY,3,"7,0",325,8.34,0.0068,-4.055,0.005,-0.0857
+postIT,FCI_EXP_ENDO_exC_exTCN,DXY,3,"2,0",176,7.2,0.0165,-3.793,0.0115,-0.1878
+postIT,FCI_EXP_RATES,DXY,3,"2,0",176,4.345,0.1361,-2.925,0.0978,-0.1376

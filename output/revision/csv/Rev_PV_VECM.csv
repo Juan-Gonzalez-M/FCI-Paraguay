@@ -1,0 +1,14 @@
+sample,system,ecdet,rank_5,rank_10,r_used,beta_terms,beta_values,alpha_eq,alpha_values,alpha_tstats
+full,lcred_FCIexp_DXY,const,1,1,1,lcred.l2|FCI_EXP_ENDO_exCredit.l2|DXY.l2|constant,1|-13.0317|0.0965|-24.0126,lcred|FCI_EXP_ENDO_exCredit|DXY,0.0014|-3e-04|0.0185,7.46|-0.39|0.91
+full,lcred_FCIexp_DXY,trend,2,2,2,lcred.l2|FCI_EXP_ENDO_exCredit.l2|DXY.l2|trend.l2,1|0|0.047|-0.0097,lcred|FCI_EXP_ENDO_exCredit|DXY,0.0089|0.0847|0.2899,2.3|5.21|0.67
+full,lcred_DXY,const,1,1,1,lcred.l2|DXY.l2|constant,1|-0.1604|-1.1347,lcred|DXY,0.0031|0.1026,6.09|1.96
+full,lcred_DXY,trend,1,1,1,lcred.l2|DXY.l2|trend.l2,1|0.4725|-0.0352,lcred|DXY,-0.001|-0.0387,-4.98|-1.96
+full,FCIexp_DXY,const,0,1,1,FCI_EXP_ENDO_exCredit.l2|DXY.l2|constant,1|-0.0418|4.019,FCI_EXP_ENDO_exCredit|DXY,-0.0592|0.5543,-3.77|1.39
+full,lcred_FCIroll_DXY,const,1,1,1,lcred.l2|FCI_ENDO_exCredit_AVG.l2|DXY.l2|constant,1|-0.936|-0.0923|-7.774,lcred|FCI_ENDO_exCredit_AVG|DXY,0.004|-3e-04|0.1146,6.71|-0.05|1.86
+full,lcred_FCIroll_DXY,trend,1,1,1,lcred.l2|FCI_ENDO_exCredit_AVG.l2|DXY.l2|trend.l2,1|-0.3846|-0.022|-0.006,lcred|FCI_ENDO_exCredit_AVG|DXY,0.015|0.0497|0.8989,5.09|1.98|3
+postIT,lcred_FCIexp_DXY,const,1,1,1,lcred.l2|FCI_EXP_ENDO_exCredit.l2|DXY.l2|constant,1|-2.3784|-0.0062|-17.6227,lcred|FCI_EXP_ENDO_exCredit|DXY,0.0197|0.0177|0.9633,5.92|1.35|2.06
+postIT,lcred_FCIexp_DXY,trend,1,1,1,lcred.l2|FCI_EXP_ENDO_exCredit.l2|DXY.l2|trend.l2,1|-178.0829|-0.0948|0.4579,lcred|FCI_EXP_ENDO_exCredit|DXY,3e-04|5e-04|0.018,4.15|1.85|1.86
+postIT,lcred_DXY,const,1,1,1,lcred.l2|DXY.l2|constant,1|-0.237|7.6666,lcred|DXY,0.0015|0.0798,5.31|2
+postIT,FCIexp_DXY,const,0,1,1,FCI_EXP_ENDO_exCredit.l2|DXY.l2|constant,1|-0.0182|1.8121,FCI_EXP_ENDO_exCredit|DXY,-0.1231|0.7374,-3.49|0.57
+postIT,lcred_FCIroll_DXY,const,1,2,1,lcred.l2|FCI_ENDO_exCredit_AVG.l2|DXY.l2|constant,1|0.2702|-0.0198|-16.6179,lcred|FCI_ENDO_exCredit_AVG|DXY,-0.0259|-0.1172|-0.5193,-5.56|-1.66|-0.79
+postIT,lcred_FCIroll_DXY,trend,0,1,1,lcred.l2|FCI_ENDO_exCredit_AVG.l2|DXY.l2|trend.l2,1|0.3008|-0.0291|0.0011,lcred|FCI_ENDO_exCredit_AVG|DXY,-0.0164|-0.332|0.4769,-2.23|-3.04|0.46

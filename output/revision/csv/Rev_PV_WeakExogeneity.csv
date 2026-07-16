@@ -1,0 +1,14 @@
+sample,system,ecdet,test,LR_stat,p_value
+full,lcred_FCIexp_DXY,const,DXY weakly exogenous (alpha_DXY = 0),0.747,0.387
+full,lcred_FCIexp_DXY,trend,DXY weakly exogenous (alpha_DXY = 0),2.353,0.308
+full,lcred_DXY,const,DXY weakly exogenous (alpha_DXY = 0),3.631,0.057
+full,lcred_DXY,trend,DXY weakly exogenous (alpha_DXY = 0),2.826,0.093
+full,FCIexp_DXY,const,DXY weakly exogenous (alpha_DXY = 0),1.657,0.198
+full,lcred_FCIroll_DXY,const,DXY weakly exogenous (alpha_DXY = 0),3.282,0.07
+full,lcred_FCIroll_DXY,trend,DXY weakly exogenous (alpha_DXY = 0),7.268,0.007
+postIT,lcred_FCIexp_DXY,const,DXY weakly exogenous (alpha_DXY = 0),3.528,0.06
+postIT,lcred_FCIexp_DXY,trend,DXY weakly exogenous (alpha_DXY = 0),2.459,0.117
+postIT,lcred_DXY,const,DXY weakly exogenous (alpha_DXY = 0),3.145,0.076
+postIT,FCIexp_DXY,const,DXY weakly exogenous (alpha_DXY = 0),0.173,0.677
+postIT,lcred_FCIroll_DXY,const,DXY weakly exogenous (alpha_DXY = 0),0.482,0.488
+postIT,lcred_FCIroll_DXY,trend,DXY weakly exogenous (alpha_DXY = 0),0.125,0.724

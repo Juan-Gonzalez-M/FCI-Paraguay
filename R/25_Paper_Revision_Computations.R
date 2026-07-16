@@ -151,7 +151,8 @@ idx_dxy <- which(rownames(ct) == "DXY")
 f_base <- as.formula(paste("FCI_ENDO_exCredit_AVG ~",
                             paste(control_vars, collapse = " + ")))
 m_base <- lm(f_base, data = fs_data)
-partial_r2 <- summary(m_full)$r.squared - summary(m_base)$r.squared
+partial_r2 <- 1 - sum(resid(m_full)^2) / sum(resid(m_base)^2)  # classical partial R2
+delta_r2_incr <- summary(m_full)$r.squared - summary(m_base)$r.squared  # old mixed-convention value
 
 # F-stat (from ANOVA)
 f_stat_anova <- anova(m_base, m_full)$F[2]
@@ -218,7 +219,7 @@ for (h in horizons_check) {
     vcov_fs <- sandwich::NeweyWest(m_fs_full, lag = h + 1, prewhite = FALSE)
     ct_fs <- lmtest::coeftest(m_fs_full, vcov = vcov_fs)
     idx_d <- which(rownames(ct_fs) == "DXY")
-    pr2 <- summary(m_fs_full)$r.squared - summary(m_fs_base)$r.squared
+    pr2 <- 1 - sum(resid(m_fs_full)^2) / sum(resid(m_fs_base)^2)  # classical partial R2
 
     conditional_results <- rbind(conditional_results, data.frame(
       horizon = h,
@@ -252,6 +253,12 @@ post_it_diag <- data.frame(
   DXY_p = c(ct[idx_dxy, 4], conditional_results$DXY_p),
   partial_R2 = c(partial_r2, conditional_results$partial_R2),
   F_stat = c(f_stat_t2, conditional_results$cond_F),
+  F_classical_anova = c(f_stat_anova, conditional_results$cond_F),
+  F_hac_t2 = c(f_stat_t2, NA),
+  deltaR2_incremental = c(delta_r2_incr, rep(NA, nrow(conditional_results))),
+  convention = c("partial_R2 classical; F_stat = HAC t^2 (legacy)",
+                 rep("partial_R2 classical; F_stat = ivreg weak-instr F (classical)",
+                     nrow(conditional_results))),
   stringsAsFactors = FALSE
 )
 

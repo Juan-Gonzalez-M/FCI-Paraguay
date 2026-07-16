@@ -19,7 +19,12 @@ scripts <- c(
   "45_COVID_Reclassification_Check.R",
   "46_USD_ShiftShare_Decomposition.R",
   "47_FXAdj_PostIT_Asymmetric_Check.R",
-  "49_IV_AR_Audit.R"
+  "49_IV_AR_Audit.R",
+  "50_Persistence_Valid_Aggregate.R",
+  "52_OneSided_FCI_Cobaseline.R",
+  "53_Currency_Migration_Test.R",
+  "54_Pipeline_Reconciliation.R",
+  "55_Submission_Figure3_95.R"
 )
 
 t_all <- Sys.time()

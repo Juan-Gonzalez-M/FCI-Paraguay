@@ -1,0 +1,11 @@
+sample,y,x,case,order,n,F_stat,F_p,t_stat,t_p,ect_coef
+full,lcred,DXY,3,"3,2",336,6.887,0.0209,1.378,0.9958,0.002
+full,lcred,DXY+Paraguay_ToT,3,"1,1,0",336,11.179,0,3.385,1,0.0059
+full,lcred,FCI_EXP_ENDO_exCredit,3,"1,0",325,29.39,0,1.401,0.9959,0.0019
+full,FCI_EXP_ENDO_exCredit,DXY,3,"2,0",325,8.384,0.0066,-3.938,0.0075,-0.0643
+full,FCI_ENDO_exCredit_AVG,DXY,3,"4,1",336,2.269,0.4838,-2.112,0.3675,-0.0254
+postIT,lcred,DXY,3,"1,0",176,3.361,0.259,-1.221,0.7522,-0.0077
+postIT,lcred,DXY+Paraguay_ToT,3,"1,0,0",176,2.58,0.3709,-0.337,0.9616,-0.0027
+postIT,lcred,FCI_EXP_ENDO_exCredit,3,"1,0",176,15.734,0,3.12,1,0.0208
+postIT,FCI_EXP_ENDO_exCredit,DXY,3,"2,0",176,5.738,0.0502,-3.387,0.0332,-0.1159
+postIT,FCI_ENDO_exCredit_AVG,DXY,3,"1,1",176,1.083,0.797,-1.422,0.6772,-0.034

@@ -40,6 +40,8 @@ runner).
 | `45_COVID_Reclassification_Check.R` | COVID-reclassified balances (Medida Excepcional/Medidas transitorias): bias signing, bank×currency add-back LP, apportioned gradient sensitivity | — |
 | `46_USD_ShiftShare_Decomposition.R` | Within/between shift-share decomposition reconciling the aggregate USD contraction with the positive within-cell differential | — |
 | `47_FXAdj_PostIT_Asymmetric_Check.R` | FX-adjustment audit: post-IT subsample + asymmetric LPs, measured vs constant-exchange-rate outcomes | — |
+| `49_IV_AR_Audit.R` | IV/AR scaling audit: 2SLS=RF/FS identity, conditional-FS decomposition, AR-at-OLS, CHR delta-method interval, joint moving-block bootstrap | — |
+| `50_Persistence_Valid_Aggregate.R` | Persistence-valid DXY–FCI assessment: unit roots, Engle–Granger/Johansen, ARDL bounds (exact CVs, BIC + whitened), pooled UECM pre/post-IT long-run break test, weak exogeneity, ex-TCN and rates-only variants (`Rev_PV_*.csv`, `292_PV_LongRun_Summary.png`; appendix K.1d) | — |
 | `RUN_REVISION.R` | Master runner + `Rev_Run_Log.csv` | — |
 
 ## Documented deviations and judgment calls

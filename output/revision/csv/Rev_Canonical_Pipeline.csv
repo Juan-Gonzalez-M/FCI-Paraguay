@@ -1,0 +1,6 @@
+"estimate","index_object","variant","source","outcome_and_controls"
+-5.6,"post-IT re-estimated composite","ENDO_exCredit (8 vars)","script 15 / Table 4","identical (Part 1; canonical spec)"
+-5.31,"post-IT re-estimated composite","exCredit (11 vars)","script 15 / App E.3","identical (Part 1; canonical spec)"
+-4.13,"full-sample-constructed composite","ENDO_exCredit (9->8 vars)","script 54 (canonical spec)","identical (Part 1; canonical spec)"
+-4,"full-sample-constructed composite","exCredit (11 vars)","script 54 (canonical spec)","identical (Part 1; canonical spec)"
+-5.46,"one-sided trailing z-score (primary)","exCredit (11 vars)","script 54 (canonical spec, PRIMARY)","identical (Part 1; canonical spec)"

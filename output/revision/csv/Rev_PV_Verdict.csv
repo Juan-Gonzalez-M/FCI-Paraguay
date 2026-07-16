@@ -1,0 +1,11 @@
+design,sample,y,x,case,levels_relationship,lr_dxy_estimate,lr_dxy_p,lr_sign_as_expected,ect_neg_signif,supports_paper
+ARDL-PSS,full,lcred,DXY,3,"degenerate (F rejects, no ECT)",0.19207,0.1618,FALSE,FALSE,NOT APPLICABLE (degenerate)
+ARDL-PSS,full,lcred,DXY+Paraguay_ToT,3,"degenerate (F rejects, no ECT)",0.07669,0.007,FALSE,FALSE,NOT APPLICABLE (degenerate)
+ARDL-PSS,full,lcred,FCI_EXP_ENDO_exCredit,3,"degenerate (F rejects, no ECT)",,,,FALSE,NOT APPLICABLE (degenerate)
+ARDL-PSS,full,FCI_EXP_ENDO_exCredit,DXY,3,yes (5%),0.03819,0,TRUE,TRUE,YES
+ARDL-PSS,full,FCI_ENDO_exCredit_AVG,DXY,3,no,0.03153,0.3301,TRUE,FALSE,NO LEVELS RELATION
+ARDL-PSS,postIT,lcred,DXY,3,no,-0.00293,0.9279,TRUE,FALSE,NO LEVELS RELATION
+ARDL-PSS,postIT,lcred,DXY+Paraguay_ToT,3,no,-0.05125,0.8321,TRUE,FALSE,NO LEVELS RELATION
+ARDL-PSS,postIT,lcred,FCI_EXP_ENDO_exCredit,3,"degenerate (F rejects, no ECT)",,,,FALSE,NOT APPLICABLE (degenerate)
+ARDL-PSS,postIT,FCI_EXP_ENDO_exCredit,DXY,3,yes (10%),0.01665,0,TRUE,TRUE,YES
+ARDL-PSS,postIT,FCI_ENDO_exCredit_AVG,DXY,3,no,-0.02292,0.6595,FALSE,FALSE,NO LEVELS RELATION

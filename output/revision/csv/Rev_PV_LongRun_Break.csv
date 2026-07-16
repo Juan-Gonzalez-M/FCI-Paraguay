@@ -1,0 +1,6 @@
+y,spec,n,p_lags,q_lags,rho_pre,rho_post,theta_pre,theta_pre_se,theta_pre_lo90,theta_pre_hi90,theta_post,theta_post_se,theta_post_lo90,theta_post_hi90,equality_z,equality_p,joint_wald_chi2,joint_wald_p
+FCI_EXP_ENDO_exCredit,"baseline (2,1)",323,2,1,-0.0822,-0.1303,0.04698,0.0075,0.03465,0.05931,0.01749,0.00203,0.01415,0.02084,-3.674,2e-04,11.924,0.0026
+FCI_EXP_ENDO_exCredit,"adjacent lags (3,2)",322,3,2,-0.0844,-0.1317,0.04736,0.00762,0.03482,0.05989,0.01758,0.00207,0.01417,0.02098,-3.64,3e-04,11.914,0.0026
+FCI_EXP_ENDO_exCredit,short-run interactions,323,2,1,-0.0835,-0.1151,0.04656,0.00715,0.0348,0.05831,0.0177,0.00242,0.01372,0.02169,-3.728,2e-04,12.548,0.0019
+FCI_EXP_ENDO_exC_exTCN,"baseline (2,1)",323,2,1,-0.0792,-0.2138,0.0427,0.00793,0.02966,0.05574,0.01006,0.00166,0.00734,0.01278,-3.92,1e-04,9.978,0.0068
+FCI_EXP_ENDO_exC_exTCN,"adjacent lags (3,2)",322,3,2,-0.0795,-0.2092,0.04339,0.00824,0.02983,0.05695,0.0101,0.00171,0.00728,0.01291,-3.852,1e-04,9.703,0.0078
