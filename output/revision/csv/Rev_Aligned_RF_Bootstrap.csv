@@ -1,0 +1,5 @@
+sample,horizon,n,B_effective,block_L,t_obs_nw,p_boot
+full,6,318,999,18,-1.82,0.171
+full,12,312,999,18,-4.06,0.032
+full,18,306,999,18,-3.21,0.053
+postIT,12,162,999,18,-4.47,0.064

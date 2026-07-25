@@ -1,0 +1,7 @@
+sample,y,x,spec,order,n,F_stat,F_p_asy,F_p_exact,t_stat,t_p,bg_p_order12,lr_dxy,lr_dxy_p
+full,FCI_OS_EXP,DXY,BIC-selected,"2,0",325,5.85,0.046,0.0463,-3.359,0.0359,0.003,0.03264,0
+full,FCI_OS_EXP,DXY,whitened (min lags passing BG12),"8,0",325,5.462,0.0616,0.0616,-3.223,0.0501,0.083,0.03278,1e-04
+full,FCI_OS_ROLL,DXY,BIC-selected,"2,0",336,4.614,0.1133,0.1145,-3.011,0.0821,0,0.01957,0.1432
+postIT,FCI_OS_EXP,DXY,BIC-selected,"2,0",176,7.2,0.0165,0.0189,-3.793,0.0115,0.004,0.00951,5e-04
+postIT,FCI_OS_EXP,DXY,whitened (min lags passing BG12),"10,0",176,3.261,0.2764,0.2807,-2.552,0.1959,0.238,0.0085,0.0331
+postIT,FCI_OS_ROLL,DXY,BIC-selected,"2,0",176,3.331,0.2641,0.2655,-2.578,0.1875,0,-0.01493,0.3372

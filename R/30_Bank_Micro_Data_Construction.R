@@ -236,19 +236,28 @@ flag_drop <- function(dt) {
 }
 
 # ---------------------------------------------------------------------------
-# 6. Valuation adjustment (plan §1.2) — adjusted log levels
-#    FC (6200): reported in PYG at current e_t  =>  lval = ln(L / e_t)  [USD]
-#    PYG (6900): lval = ln(L / IPC * 100)                              [real]
+# 6. Valuation adjustment (plan §1.2; symmetric deflation, round-11 E2) —
+#    adjusted log levels. Both fixed-exchange-rate books are deflated by the
+#    SAME Paraguayan CPI so that domestic inflation cancels in the
+#    within-cell currency differential (the pre-revision asymmetric
+#    treatment left the FC book nominal in USD, mechanically loading
+#    domestic inflation on the Shock x USD margin):
+#    FC (6200): lval = ln(L / e_t / IPC * 100)  [constant-e_t, real]
+#    PYG (6900): lval = ln(L / IPC * 100)       [real]
 # ---------------------------------------------------------------------------
-cat("Applying valuation adjustment...\n")
+cat("Applying valuation adjustment (symmetric CPI deflation)...\n")
 fxci <- macro[, .(ym, TCN, IPC)]
 
 add_lval <- function(dt, levelvar) {
   dt <- merge(dt, fxci, by = "ym", all.x = TRUE)
   dt[, lval := fifelse(
+        cur == CUR_FC,  log(get(levelvar) / TCN / IPC * 100),
+        log(get(levelvar) / IPC * 100))]
+  # Pre-revision asymmetric variant (FC nominal in USD) kept for the O.6 audit
+  dt[, lval_asym := fifelse(
         cur == CUR_FC,  log(get(levelvar) / TCN),
         log(get(levelvar) / IPC * 100))]
-  dt[get(levelvar) <= 0, lval := NA_real_]
+  dt[get(levelvar) <= 0, `:=`(lval = NA_real_, lval_asym = NA_real_)]
   # Unadjusted variant (nominal PYG) kept for diagnostics/audit
   dt[, lval_nom := fifelse(get(levelvar) > 0, log(get(levelvar)), NA_real_)]
   dt

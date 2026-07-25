@@ -1,0 +1,6 @@
+pair,correlation
+FCI_OS_EXP vs FCI_OS_ROLL,0.67982386881304
+FCI_OS_EXP vs composite rolling FCI_ENDO_exCredit_AVG,0.684720971324537
+FCI_OS_EXP vs expanding composite-domestic (script 39),0.988268546252089
+FCI_OS_EXP vs paper one-sided comprehensive FCI_exCredit_ZSCORE,0.625678680289634
+FCI_OS_ROLL vs composite rolling FCI_ENDO_exCredit_AVG,0.89761505240965

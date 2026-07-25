@@ -24,7 +24,12 @@ scripts <- c(
   "52_OneSided_FCI_Cobaseline.R",
   "53_Currency_Migration_Test.R",
   "54_Pipeline_Reconciliation.R",
-  "55_Submission_Figure3_95.R"
+  "56_Aligned_Identification_Chain.R",
+  "57_Sectoral_Group_Tests.R",
+  "58_Small_Robustness_Items.R",
+  "59_Aligned_HAC_AR.R",
+  "60_Submission_Figure3_TwoPanel.R",   # supersedes 55 (single-panel Figure 3)
+  "61_Submission_Figure9_DesignAligned.R"
 )
 
 t_all <- Sys.time()

@@ -1,0 +1,9 @@
+sample,index,horizon,n,F_classical_conditional,t_hac_nw
+full,DOM8_ROLL,12,311,18.74,3.86
+full,DOM7_ROLL,12,311,11.25,3.25
+full,DOM8_EXP,12,311,16.43,4.13
+full,DOM7_EXP,12,311,11.99,3.26
+postIT,DOM8_ROLL,12,162,7.27,2.5
+postIT,DOM7_ROLL,12,162,1.24,1.11
+postIT,DOM8_EXP,12,162,10.31,2.33
+postIT,DOM7_EXP,12,162,4.65,1.88

@@ -1,0 +1,10 @@
+leg,value
+"ARDL bounds full (whitened, exact p)",F=5.46 p=0.062
+"ARDL bounds postIT (whitened, exact p)",F=3.26 p=0.281
+First stage full (classical F | HAC t),F=12.0 | t=3.27
+First stage postIT (classical F | HAC t),F=4.6 | t=1.88
+Reduced form h=12 full (NW p | bootstrap p),p=0.0001 | p_boot=0.0320
+Reduced form h=12 postIT (NW p | bootstrap p),p=0.0000 | p_boot=0.0640
+AR 90% set h=12 full,"[-366, -120]"
+"Credit LP h=12 full (per-SD, p)",-2.72 (p=0.1377)
+"Credit LP h=12 postIT (per-SD, p)",-1.36 (p=0.0196)

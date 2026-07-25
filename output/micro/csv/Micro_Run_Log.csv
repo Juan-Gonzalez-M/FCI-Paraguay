@@ -1,8 +1,8 @@
 "script","status","minutes"
 "30_Bank_Micro_Data_Construction.R","OK",0.03
-"31_Bank_Micro_DesignA_Currency.R","OK",35.84
-"32_Bank_Micro_DesignB_Exposure.R","OK",27.71
-"33_Bank_Micro_DesignC_Hedging.R","OK",16.03
-"34_Bank_Micro_DesignD_Mechanisms.R","OK",6.02
-"35_Bank_Micro_Robustness.R","OK",98.86
-"48_Gradient_TimeRobust_Inference.R","OK",33.66
+"31_Bank_Micro_DesignA_Currency.R","OK",38.07
+"32_Bank_Micro_DesignB_Exposure.R","OK",27.72
+"33_Bank_Micro_DesignC_Hedging.R","OK",15.81
+"34_Bank_Micro_DesignD_Mechanisms.R","OK",5.88
+"35_Bank_Micro_Robustness.R","OK",30.42
+"48_Gradient_TimeRobust_Inference.R","OK",31.62

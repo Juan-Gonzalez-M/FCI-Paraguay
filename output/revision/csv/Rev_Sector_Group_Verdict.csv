@@ -1,0 +1,8 @@
+test,value
+"Group equality h=2Q (diff, p)",-0.56 (p=0.604)
+"Group equality h=4Q (diff, p)",-2.28 (p=0.010)
+"FinDep h=2Q (coef, p)",-1.91 (p=0.038)
+"FinDep h=4Q (coef, p)",-1.50 (p=0.067)
+"Insulated h=2Q (coef, p)",-1.16 (p=0.410)
+"Insulated h=4Q (coef, p)",1.02 (p=0.412)
+BH-FDR rejections at q<0.10 (of 48),5

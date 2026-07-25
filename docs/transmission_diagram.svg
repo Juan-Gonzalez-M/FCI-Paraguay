@@ -77,7 +77,7 @@
 
   <text x="285" y="240" font-family="Times New Roman, serif" font-size="14" fill="#27ae60">→</text>
 
-  <text x="340" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="#1e8449">−10.8 pp</text>
+  <text x="340" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="#1e8449">−8.8 pp</text>
   
   <!-- ToT Low scenario -->
   <rect x="420" y="190" width="320" height="85" rx="4" fill="#fdedec" stroke="#c0392b" stroke-width="1.5"/>
@@ -95,7 +95,7 @@
 
   <text x="645" y="240" font-family="Times New Roman, serif" font-size="14" fill="#c0392b">→</text>
 
-  <text x="700" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="#922b21">−3.7 pp</text>
+  <text x="700" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="#922b21">−3.0 pp</text>
   
   <!-- SECTION 3: Dual-Engine Economy (Bottom) -->
   <rect x="20" y="295" width="760" height="195" rx="5" fill="#f4ecf7" stroke="#8e44ad" stroke-width="1.5"/>
@@ -118,7 +118,7 @@
   <!-- Finance-dependent sectors box -->
   <rect x="200" y="325" width="180" height="75" rx="4" fill="#9b59b6" stroke="#8e44ad" stroke-width="1.5"/>
   <text x="290" y="345" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="white">Finance-Dependent (Y^F)</text>
-  <text x="290" y="360" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="white">ω_F ≈ 55% of GDP</text>
+  <text x="290" y="360" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="white">ω_F ≈ 56% of GDP</text>
   <line x1="215" y1="368" x2="365" y2="368" stroke="white" stroke-width="0.5"/>
   <text x="290" y="382" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="white">Investment: −7.95 pp</text>
   <text x="290" y="393" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="white">Construction: −4.90 pp</text>
@@ -126,7 +126,7 @@
   <!-- Agriculture box -->
   <rect x="200" y="410" width="180" height="55" rx="4" fill="#27ae60" stroke="#1e8449" stroke-width="1.5"/>
   <text x="290" y="430" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="white">Agriculture (Y^A)</text>
-  <text x="290" y="445" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="white">ω_A ≈ 10% of GDP</text>
+  <text x="290" y="445" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="white">ω_A ≈ 7% of GDP</text>
   <text x="290" y="458" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="white">Effect: ≈ 0 (n.s.)</text>
   
   <!-- Arrows to Aggregate -->
@@ -136,7 +136,7 @@
   <!-- Aggregate GDP box -->
   <rect x="450" y="375" width="130" height="50" rx="4" fill="#34495e" stroke="#2c3e50" stroke-width="1.5"/>
   <text x="515" y="395" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="white">Aggregate GDP (Y)</text>
-  <text x="515" y="412" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="white">Effect: −2.00 pp</text>
+  <text x="515" y="412" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="white">Effect: −1.59 pp (p = 0.12)</text>
   
   <!-- Explanation arrow and box -->
   <line x1="580" y1="400" x2="620" y2="400" stroke="#2c3e50" stroke-width="1.5" marker-end="url(#arrowhead)"/>
@@ -146,8 +146,8 @@
   <text x="697" y="378" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" font-style="italic" fill="#2c3e50">Y = ω_A·Y^A + ω_F·Y^F</text>
   <line x1="640" y1="388" x2="755" y2="388" stroke="#f39c12" stroke-width="0.5"/>
   <text x="697" y="405" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="#2c3e50">∂Y/∂FCI = ω_F·(∂Y^F/∂FCI)</text>
-  <text x="697" y="420" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="#2c3e50">= 0.55 × (−4 pp)</text>
-  <text x="697" y="435" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" font-weight="bold" fill="#2c3e50">≈ −2.2 pp ✓</text>
+  <text x="697" y="420" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="#2c3e50">weighted sector sum</text>
+  <text x="697" y="435" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" font-weight="bold" fill="#2c3e50">≈ −1.66 pp ✓</text>
   <text x="697" y="452" text-anchor="middle" font-family="Times New Roman, serif" font-size="7" font-style="italic" fill="#7f8c8d">Weak aggregate = composition,</text>
   <text x="697" y="462" text-anchor="middle" font-family="Times New Roman, serif" font-size="7" font-style="italic" fill="#7f8c8d">not measurement failure</text>
   
