@@ -29,7 +29,13 @@ scripts <- c(
   "58_Small_Robustness_Items.R",
   "59_Aligned_HAC_AR.R",
   "60_Submission_Figure3_TwoPanel.R",   # supersedes 55 (single-panel Figure 3)
-  "61_Submission_Figure9_DesignAligned.R"
+  "61_Submission_Figure9_DesignAligned.R",
+  "62_Submission_Figure1.R",
+  "63_Sectoral_Group_Wald.R",
+  "64_Gradient_VIX_Placebo.R",          # matched VIX exposure gradient + 2016 shares
+  "65_Sector_Group_Stability.R",        # LOO / alt-classification / post-IT group test
+  "66_Submission_Figure5_Predetermined.R",
+  "67_Sector_Group_Wald_OneSided.R"      # group test under the one-sided timing standard
 )
 
 t_all <- Sys.time()
