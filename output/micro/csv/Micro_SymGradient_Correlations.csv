@@ -1,0 +1,8 @@
+pair,corr
+published purged DXY vs symmetric DXY,0.9987
+published raw VIX vs symmetric VIX,0.8292
+symmetric DXY vs symmetric VIX,-0.1323
+mutual DXY vs mutual VIX,-0.0582
+published purged DXY vs published raw VIX,-0.0928
+published purged DXY vs mutual DXY,1
+published raw VIX vs mutual VIX,0.8293

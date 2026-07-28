@@ -32,10 +32,15 @@ scripts <- c(
   "61_Submission_Figure9_DesignAligned.R",
   "62_Submission_Figure1.R",
   "63_Sectoral_Group_Wald.R",
-  "64_Gradient_VIX_Placebo.R",          # matched VIX exposure gradient + 2016 shares
+  "64_Gradient_VIX_Placebo.R",          # VIX exposure gradient (comparator unpurged) + 2016 shares
   "65_Sector_Group_Stability.R",        # LOO / alt-classification / post-IT group test
   "66_Submission_Figure5_Predetermined.R",
-  "67_Sector_Group_Wald_OneSided.R"      # group test under the one-sided timing standard
+  "67_Sector_Group_Wald_OneSided.R",     # group test under the one-sided timing standard
+  # Round 19 additions
+  "68_Symmetric_Gradient_Comparison.R",  # SYMMETRIC dollar-vs-VIX gradient (App O.4g-O.4h)
+  "69_Screening_Transformation_Matched.R", # persistence-matched Table 5 screening (App K.5)
+  "70_OneSided_Band_SDs_CurrencyTest.R", # sup-t band, Panel B per-SD, MN-vs-USD equality
+  "71_Split_Sample_DK.R"                 # Driscoll-Kraay SEs for Table 7's split rows
 )
 
 t_all <- Sys.time()

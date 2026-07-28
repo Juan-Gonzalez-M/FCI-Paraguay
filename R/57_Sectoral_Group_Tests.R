@@ -126,8 +126,11 @@ lp_q <- function(data, y_var, max_h = 8) {
 cat("\n[1] Group aggregates and equality test...\n")
 grp <- rbind(lp_q(az, "AG_FinDep"), lp_q(az, "AG_Insulated"),
              lp_q(az, "AG_GroupDiff"), lp_q(az, "AG_PIB"))
-grp$share_pct <- round(100 * c(FinDep = shares["FinDep"],
-                               Insulated = shares["Insulated"],
+# NOTE: shares[...] carries its own names, so naming the elements of c() again
+# produced "FinDep.FinDep"-style names and the lookup below silently returned NA
+# for both group rows. unname() is required for the match to resolve.
+grp$share_pct <- round(100 * c(FinDep    = unname(shares["FinDep"]),
+                               Insulated = unname(shares["Insulated"]),
                                GroupDiff = NA, PIB = 1)[
   sub("AG_", "", grp$y)], 1)
 fwrite(grp, file.path(OUT, "Rev_Sector_GroupTests.csv"))

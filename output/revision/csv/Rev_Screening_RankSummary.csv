@@ -1,0 +1,7 @@
+grid,lag_convention,top_candidate,top_pR2,dxy_pR2,dxy_rank,dxy_t_nw3,dxy_t_nw13,dxy_ratio_to_next,N
+level,contemp,DXY,0.235,0.235,1,5.79,3.48,5.67,336
+level,lagmatched,DXY,0.2367,0.2367,1,1.45,1.75,5.72,334
+d12,contemp,DXY,0.0458,0.0458,1,2.32,1.84,3.03,324
+d12,lagmatched,DXY,0.082,0.082,1,-0.21,-0.22,4.13,322
+ma12,contemp,DXY,0.2103,0.2103,1,5.15,3.02,3.35,325
+ma12,lagmatched,DXY,0.2498,0.2498,1,0.71,0.83,3.63,323

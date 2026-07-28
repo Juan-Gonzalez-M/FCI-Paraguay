@@ -1,0 +1,7 @@
+"panelB_row","index_object","sample","coef_per_unit","sd_index","coef_per_sd","n_obs","note"
+"Regime-specific composite","FCI_ENDO_exCredit (post-IT re-estimated)","postIT",-5.5995777528278,NA,NA,NA,"index re-estimated on the post-IT sample inside script 15 (four-method, incl. MARSS DFM); series not exported, per-SD not recoverable from the archive"
+"Full-sample composite, post-IT window","FCI_exCredit_AVG","postIT",-3.99971875072756,0.694841363075757,-2.7791700286752,162,"SD on the h=12 LP estimation sample"
+"Rates-only co-baseline","FCI_RATES_AVG","full",-5.43944476708963,0.906197686184425,-4.9292122620646,334,"SD on the h=12 LP estimation sample"
+"Full-sample domestic","FCI_ENDO_exCredit_AVG","full",-7.94846064735573,0.883380515179318,-7.02151526154364,334,"SD on the h=12 LP estimation sample"
+"Full-sample ex-credit composite","FCI_exCredit_AVG","full",-7.65628048038673,0.889905972230997,-6.81336972457176,334,"SD on the h=12 LP estimation sample"
+"Macro-purged FCI","FCI_purged","full",-8.26994616989275,NA,NA,NA,"index constructed inside script 05 on purge_data (analysis_data after na.omit over its full column set); series not exported and a wider-frame reconstruction does not reproduce the published coefficient (-8.152/n=333 vs -8.270/n=332), so no per-SD is claimed"
