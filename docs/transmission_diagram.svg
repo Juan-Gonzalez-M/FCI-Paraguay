@@ -53,9 +53,9 @@
   
   <!-- Key insight box -->
   <rect x="665" y="82" width="105" height="50" rx="3" fill="#fff9e6" stroke="#f39c12" stroke-width="1"/>
-  <text x="717" y="98" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" font-style="italic" fill="#8B7000">Key insight:</text>
-  <text x="717" y="111" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" font-weight="bold" fill="#8B7000">DXY >> VIX</text>
-  <text x="717" y="124" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="#8B7000">for dollarized EMs</text>
+  <text x="717" y="98" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" font-style="italic" fill="#8B7000">In Paraguay:</text>
+  <text x="717" y="111" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" font-weight="bold" fill="#8B7000">DXY has the largest</text>
+  <text x="717" y="124" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="#8B7000">in-sample association</text>
   
   <!-- SECTION 2: Conditional Financial Accelerator (Middle) -->
   <rect x="20" y="155" width="760" height="130" rx="5" fill="#fef9e7" stroke="#f39c12" stroke-width="1.5"/>
@@ -77,7 +77,7 @@
 
   <text x="285" y="240" font-family="Times New Roman, serif" font-size="14" fill="#27ae60">→</text>
 
-  <text x="340" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="#1e8449">−8.8 pp</text>
+  <text x="340" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" font-weight="bold" fill="#1e8449">−8.4 pp</text>
   
   <!-- ToT Low scenario -->
   <rect x="420" y="190" width="320" height="85" rx="4" fill="#fdedec" stroke="#c0392b" stroke-width="1.5"/>
@@ -95,7 +95,7 @@
 
   <text x="645" y="240" font-family="Times New Roman, serif" font-size="14" fill="#c0392b">→</text>
 
-  <text x="700" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="#922b21">−3.0 pp</text>
+  <text x="700" y="240" text-anchor="middle" font-family="Times New Roman, serif" font-size="10" fill="#922b21">−2.6 pp (n.s.)</text>
   
   <!-- SECTION 3: Dual-Engine Economy (Bottom) -->
   <rect x="20" y="295" width="760" height="195" rx="5" fill="#f4ecf7" stroke="#8e44ad" stroke-width="1.5"/>
@@ -121,7 +121,7 @@
   <text x="290" y="360" text-anchor="middle" font-family="Times New Roman, serif" font-size="9" fill="white">ω_F ≈ 56% of GDP</text>
   <line x1="215" y1="368" x2="365" y2="368" stroke="white" stroke-width="0.5"/>
   <text x="290" y="382" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="white">Investment: −7.95 pp</text>
-  <text x="290" y="393" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="white">Construction: −4.90 pp</text>
+  <text x="290" y="393" text-anchor="middle" font-family="Times New Roman, serif" font-size="8" fill="white">Construction: −5.27 pp</text>
   
   <!-- Agriculture box -->
   <rect x="200" y="410" width="180" height="55" rx="4" fill="#27ae60" stroke="#1e8449" stroke-width="1.5"/>

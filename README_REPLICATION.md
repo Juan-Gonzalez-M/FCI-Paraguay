@@ -47,14 +47,14 @@ pandoc Response_to_Reviewers_DRAFT.md \
 
 Four details are load-bearing and easy to get wrong:
 
-- **Run pandoc from `output/reports/`, never from the repository root.** The appendix embeds 17 figures via `../../output/png/...` relative paths. From the root none of them resolve, and pandoc *succeeds silently*: the result is a 66-page, 289 KB PDF with every figure missing instead of the correct 79-page, 4.86 MB file. Check the page count **and** the file size after every appendix rebuild.
+- **Run pandoc from `output/reports/`, never from the repository root.** The appendix embeds 18 figures via `../../output/png/...` and `../submission/...` relative paths. From the root none of them resolve, and pandoc *succeeds silently*: the result is a 66-page, 289 KB PDF with every figure missing instead of the correct 79-page, 4.86 MB file. Check the page count **and** the file size after every appendix rebuild.
 - **Do not pass `--toc`.** The source carries its own hand-written Contents table; `--toc` adds a second, generated one and inflates the document by ~3 pages.
 - **`-V fontsize=11pt` is required.** Omitting it silently falls back to 10pt (leading 12.0 pt instead of 13.6 pt) and changes the pagination.
 - **`-V geometry:margin=1in` is required.** Without it the `article` defaults give a much narrower text block.
 
-The YAML `header-includes` block at the top of the `.md` (`\usepackage[labelformat=empty]{caption}`) is picked up automatically and must be preserved.
+The YAML `header-includes` block at the top of the `.md` is picked up automatically and must be preserved. It now carries `\usepackage{float}` and `\floatplacement{figure}{H}` as well as `\usepackage[labelformat=empty]{caption}`: pinning figures in place prevents a float from drifting across a section boundary (Figure M.1 previously migrated into Appendix N in the typeset output, splitting Table N.3). Note that `placeins` is *not* available in the TinyTeX distribution used here; `float` is.
 
-Verification: the appendix should build to **letter size, ~79 pages and >4 MB** (66 pages / <300 KB means the figures did not resolve --- see the working-directory item above) and the response letter to **~11 pages**, with `pdfinfo` reporting `Creator: LaTeX via pandoc` / `Producer: xdvipdfmx`. Rebuilding the frozen V2 sources (`output/archive/IREF_V2_2026-07-17/`) with these commands reproduces both shipped V2 PDFs with byte-identical text layers (66 and 16 pages) — use that as a regression check if the settings are ever in doubt.
+Verification: the appendix should build to **letter size, ~92 pages and >4.5 MB** (a page count in the 60s with <300 KB means the figures did not resolve --- see the working-directory item above) and the response letter to **~9 pages**, with `pdfinfo` reporting `Creator: LaTeX via pandoc` / `Producer: xdvipdfmx`. Rebuilding the frozen V2 sources (`output/archive/IREF_V2_2026-07-17/`) with these commands reproduces both shipped V2 PDFs with byte-identical text layers (66 and 16 pages) — use that as a regression check if the settings are ever in doubt.
 
 The stale `private/Response_to_Reviewers_DRAFT.tex` and `.log` are leftovers from an earlier build path and are not used; the `.md` is the single source.
 
@@ -69,7 +69,7 @@ All bootstrap and permutation results are seeded for exact reproducibility:
 
 ## 4. Exhibit-to-script manifest (main text)
 
-Verified against the compiled manuscript on 25 July 2026: **10 tables, 6 figures**. (Earlier versions of this manifest listed 11 tables and 7 figures with shifted figure numbers; corrected here.) Note that the submission PNG filenames are not in exhibit order.
+Verified against the compiled manuscript on 29 July 2026: **8 tables, 4 figures**. (Earlier versions of this manifest listed 10 tables and 6 figures, and included a Conley--Hansen--Rossi bounds figure that has since moved to the online appendix; corrected here.) Note that the submission PNG filenames are not in exhibit order.
 
 | Exhibit | Content | Script(s) | Key outputs |
 |---|---|---|---|
@@ -80,12 +80,11 @@ Verified against the compiled manuscript on 25 July 2026: **10 tables, 6 figures
 | Table 5 | Candidate-instrument screening | `18_FCI_Improved_IV_LP.R` | `IV_First_Stage_Battery.csv` |
 | Table 6 | Aligned reduced form, AR sets, bootstrap (FCI_IV) | `56_Aligned_Identification_Chain.R`, `59_Aligned_HAC_AR.R` | `Rev_Aligned_ReducedForm.csv`, `Rev_Aligned_HAC_AR.csv`, `Rev_Aligned_RF_Bootstrap.csv` |
 | Table 7 | Bank-level within-cell estimates, exposure gradient, matched VIX placebo and difference test (**Driscoll–Kraay declared primary**) | `31`–`33`, `48`, `64` | `Micro_DesignA_Main.csv`, `Micro_Split_WCB.csv`, `Micro_Gradient_*.csv`, `Micro_VIXGradient_*.csv`, `Micro_Gradient_DXY_vs_VIX_Diff.csv` |
-| Table 8 | Sectoral output responses + group tests (Panel B) | `27_FCI_Published_Quarterly_LP.R`, `63_Sectoral_Group_Wald.R`, **`67_Sector_Group_Wald_OneSided.R`** | `Output_Puzzle_Quarterly_Transmission.csv`, `Rev_Sector_Group_Wald.csv`, `Rev_Sector_Group_Wald_OneSided.csv` |
+| Table 8 | Group-level sectoral tests (finance-dependent vs insulated) | `27_FCI_Published_Quarterly_LP.R`, `63_Sectoral_Group_Wald.R`, **`67_Sector_Group_Wald_OneSided.R`** | `Output_Puzzle_Quarterly_Transmission.csv`, `Rev_Sector_Group_Wald.csv`, `Rev_Sector_Group_Wald_OneSided.csv` |
 | Figure 1 | Composite FCI with stress episodes | `62_Submission_Figure1.R` | `Figure_1.png` |
 | Figure 2 | Credit IRFs (primary one-sided + composite) | `60_Submission_Figure3_TwoPanel.R` | `Figure_3.png` |
-| Figure 3 | Conley–Hansen–Rossi bounds (aligned index) | `56` (breakdown), `49` Part 5 (joint bootstrap) | `Rev_Aligned_CHR_Breakdown.csv`, `Rev_CHR_Calibration_JointBootstrap.csv`, `Figure_7.png` |
-| Figure 4 | Bank-level currency-composition margin (Driscoll–Kraay primary bands) | `61_Submission_Figure9_DesignAligned.R` | `Figure_9.png` |
-| Figure 5 | Component-exclusion ladder | `42_FCI_Component_Exclusion.R` | `Figure_10.png` |
+| Figure 3 | Bank-level currency-composition margin (Driscoll–Kraay primary bands) | `61_Submission_Figure9_DesignAligned.R` | `Figure_9.png` |
+| Figure 4 | Component-exclusion ladder | `42_FCI_Component_Exclusion.R` | `Figure_10.png` |
 
 **Relocated to the online appendix in the round-17 revision** (the manuscript no longer carries these as main-text exhibits):
 
@@ -93,6 +92,10 @@ Verified against the compiled manuscript on 25 July 2026: **10 tables, 6 figures
 |---|---|---|---|
 | Table N.6a | FCI x ToT interaction — predetermined state (was main-text Table 9) | `66_Submission_Figure5_Predetermined.R` | `Rev_ToT_Interaction_BothStates.csv` |
 | Figure N.2 | ToT marginal effects — predetermined state (was main-text Figure 5) | `66_Submission_Figure5_Predetermined.R` | `Rev_Marginal_Effects_Predetermined.csv`, `Figure_5.png` |
+| Table E.0d | Pointwise **and simultaneous (sup-$t$)** bands, h = 1--18, both samples | `70_OneSided_Band_SDs_CurrencyTest.R` | `Rev_OneSided_Profile_Band.csv` |
+| Table E.3c | Full-sample stacked MN-vs-USD currency difference | `70_OneSided_Band_SDs_CurrencyTest.R` | `Rev_Currency_Equality_Test.csv` |
+| Tables K.5b(i)--(ii) | Persistence-matched candidate screening (3 transformations x 2 lag conventions x 7 candidates) | `69_Screening_Transformation_Matched.R` | `Rev_Screening_RankSummary.csv`, `Rev_Screening_TransformationMatched.csv` |
+| Table O.4a, DK column | Driscoll--Kraay p-values for the split rows (primary convention) | `71_Split_Sample_DK.R` | `Micro_DesignC_Split_DK.csv` |
 | Table F.8e | Group-equality test under the one-sided timing standard | **`67_Sector_Group_Wald_OneSided.R`** | `Rev_Sector_Group_Wald_OneSided.csv` |
 | Appendix A | FCI descriptive moments (were Table 2 columns) | `01_FCI_Complete.R` | `FCI_Complete_Results.csv` |
 | Appendix F | Descriptive individual-sector rows (were Table 10 Panel A) | `27_FCI_Published_Quarterly_LP.R` | `Output_Puzzle_Quarterly_Transmission.csv` |

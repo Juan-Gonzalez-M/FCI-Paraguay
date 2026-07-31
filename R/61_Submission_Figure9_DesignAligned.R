@@ -19,13 +19,15 @@ grad <- dc %>%
 
 split <- dc %>%
   filter(variant == "sharp", h <= 18) %>%
-  mutate(group = ifelse(param == "shk_usd", "High-FX-credit",
-                        "Differential: locally oriented - high-FX-credit")) %>%
+  mutate(group = ifelse(param == "shk_usd", "Export-oriented",
+                        "Differential: locally oriented - export-oriented")) %>%
   filter(param == "shk_usd") %>%
-  # Round-14: sectors are classified by their 2016 FX-credit share, not by
-  # observed export income, so the label names the classification variable.
+  # Round-20: the binary split is an institutional preselection of
+  # export-oriented sectors (cattle ranks sixth of 11 by standardized 2016
+  # exposure), so exposure language is reserved for the continuous gradient
+  # in panel (a).  Label matches main-text Section 5.3, Table 7 and caption.
   transmute(horizon = h, coef = b, se = se_dk,
-            panel = "(b) High-FX-credit sectors (agriculture, cattle): shock x USD")
+            panel = "(b) Preselected export-oriented sectors (agriculture, cattle): shock x USD")
 
 both <- bind_rows(grad, split) %>%
   mutate(lo = coef - Z90 * se, hi = coef + Z90 * se)
