@@ -132,8 +132,36 @@ Seeds: 64 reuses script 48's seeds (20260710 / 20260712) so the dollar and VIX g
 - **O.1–O.7 bank-level construction, batteries, shift-share**: `30`–`36`, `45`–`48` → `Micro_*.csv`, `Rev_ShiftShare_*.csv`, `Rev_S6_Exposure_Timing.csv`
 - **B.7 transmission schematic**: `docs/transmission_diagram.svg` → `output/png/transmission_diagram.png` (rsvg-convert)
 
+### 5b. Appendix crosswalk
+
+The script and output-file references that formerly ran inside the appendix prose
+are collected here, so the appendix carries the science and this file carries the
+operational detail. The appendix retains a single pointer to this table.
+
+| Appendix subsection | Script(s) | Archived output(s) |
+|---|---|---|
+| A.4 Post-IT PCA loading comparison | `08_FCI_Regime_TVP_Analysis.R` | `FCI_Regime_PCA_Comparison.csv` |
+| A.6 Effective weights, targeted sign sensitivity | `58_Small_Robustness_Items.R` (Part 4) | `Rev_S5_Effective_Weights.csv` |
+| A.7 Component-exclusion ladder | `42_FCI_Component_Exclusion.R` | `Rev_FCI_LOO_Battery.csv` |
+| E.0d Pointwise and simultaneous sup-*t* bands | `70_OneSided_Band_SDs_CurrencyTest.R` | `Rev_OneSided_Profile_Band.csv` |
+| E.3 Currency comparison, per-SD conversions | `70_OneSided_Band_SDs_CurrencyTest.R` | `Rev_Currency_Equality_Test.csv`, `Rev_PanelB_PerSD.csv` |
+| F.6 Negative-control comparisons | `41_Falsification_Placebos.R` | `PubQ_LP_Supply_Full.csv`, `Rev_Falsification_Placebos.csv`, `Rev_Falsification_SameAssembly.csv` |
+| F.7 Credit-controlled sectoral LPs (mediation) | `57_Sectoral_Group_Tests.R` | `PubQ_LP_Supply_Full.csv` |
+| F.8–F.8c Group-level sectoral tests, composition stability | `57_Sectoral_Group_Tests.R`, `65_Sector_Group_Stability.R` | `Rev_Sector_Group_Wald.csv`, `Rev_Sector_Group_Stability.csv` |
+| F.8e Group-equality test, one-sided standard | `57`, `65` | `Rev_Sector_Group_Wald_OneSided.csv` |
+| K.1 (archival, superseded) Pre-alignment composite IV-LP | `49_IV_AR_Audit.R` | `Rev_IV_AR_Audit.csv`, `Rev_IV_AR_Audit_HAC.csv` |
+| K.1c HAC-robust AR, boundedness, persistence diagnostics | `56`, `59` | `Rev_Aligned_HAC_AR.csv`, `Rev_Aligned_UnitRoots.csv`, `Rev_PV_UnitRoots.csv` |
+| K.1d Null-imposed joint moving-block bootstrap (h = 6, 12, 18 grid) | `56_Aligned_Identification_Chain.R` | `Rev_Aligned_RF_Bootstrap.csv` |
+| K.5b Transformation-matched candidate screening | `69_Screening_Transformation_Matched.R` | `Rev_Screening_RankSummary.csv`, `Rev_Screening_TransformationMatched.csv` |
+| N.6 FCI×ToT specifications, predetermined state | `66_Submission_Figure5_Predetermined.R` | `Rev_ToT_Interaction_BothStates.csv` |
+| O.1 Bank data and panel construction | `30`–`32` | `Micro_Sector_FX_Shares.csv`, `Micro_Sector_FX_Shares_2016.csv` |
+| O.4 FX-credit-exposure gradient, full variants | `30`, `48`, `71_Split_Sample_DK.R` | `Micro_Gradient_TimeRobust.csv`, `Micro_DesignC_Split_DK.csv` |
+| O.4e VIX comparator, unpurged (seeded, 9,999 reps) | `64_Gradient_VIX_Placebo.R` | `Micro_Gradient_VIX_*.csv` |
+| O.4g Symmetric dollar/VIX gradients (seeded 20260710/20260712, 9,999 reps) | `68_Symmetric_Gradient_Comparison.R` | `Micro_Symmetric_Gradient_*.csv` |
+| O.8 Constant-exchange-rate aggregate credit | `36_Aggregate_FXAdjusted_Credit_LP.R`, `47` | `Rev_FXAdj_PostIT_LP.csv` |
+
 ## 6. Data
 
 See Online Appendix Q (Data Sources and Access). `output/revision/external/` caches FRED downloads (fetched by script 43).
 
-**One series cannot be redistributed.** The DXY (ICE US Dollar Index) comes from Bloomberg under a terminal licence, monthly-averaged from daily observations, and lives in the `Global_Financial_Conditions` sheet of `data/FCI_data_1.xlsx`. Users without Bloomberg access can reproduce every dollar exercise on the public Federal Reserve broad dollar index (`DTWEXBGS` spliced with `DTWEXB`), which script 43 downloads automatically; Appendix K.6 reports the full instrument battery under that measure.
+**One series cannot be redistributed.** The DXY (ICE US Dollar Index) comes from Bloomberg under a terminal licence, monthly-averaged from daily observations, and lives in the `Global_Financial_Conditions` sheet of `data/FCI_data_1.xlsx`. Users without Bloomberg access can check the **principal aggregate** dollar conclusion on the public Federal Reserve broad dollar index (`DTWEXBGS` spliced with `DTWEXB`), which script 43 downloads automatically; Appendix K.6 reports the full instrument battery under that measure. The **exact DXY coefficients of main-text Tables 5-6 require the licensed series** and cannot be reproduced from public data alone. The broad-dollar substitution is documented for the aggregate instrument chain only — the bank-panel exercise of Section 5.3 has not been re-run on the public series.
